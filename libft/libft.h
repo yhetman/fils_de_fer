@@ -115,7 +115,7 @@ int					ft_tolower(int ch);
 int					ft_toupper(int ch);
 int					*ft_range(int first, int last);
 void				ft_swap(int *a, int *b);
-void				ft_strerr(char *str);
+int					ft_strerr(char *str);
 int					get_next_line(const int fd, char **line);
 int					ft_putwchar(wchar_t w);
 int					ft_wtoi_p1(wchar_t w, int fd);

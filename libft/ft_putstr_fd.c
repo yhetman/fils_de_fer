@@ -16,13 +16,10 @@ int	ft_putstr_fd(const char *s, int fd)
 {
 	int j;
 
-	j = 0;
+	j = -1;
 	if (!s)
 		return (0);
-	while (s[j] != '\0')
-	{
+	while (s[++j] != '\0')
 		ft_putchar_fd(s[j], fd);
-		j++;
-	}
 	return (j);
 }
