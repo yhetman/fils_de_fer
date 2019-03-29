@@ -1,51 +1,97 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/03 15:10:32 by yhetman           #+#    #+#              #
+#    Updated: 2019/02/08 19:07:48 by yhetman          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC_FUNCTIONS = ft_putchar.c	ft_putendl.c	ft_putstr.c		\
-				ft_putnbr.c		ft_strclr.c 	ft_putnbr_fd.c	\
-				ft_putendl_fd.c	ft_putchar_fd.c	ft_putstr_fd.c	\
-				ft_striteri.c	ft_striter.c	ft_strequ.c		\
-				ft_strnequ.c	ft_memdel.c		ft_memalloc.c	\
-				ft_strdel.c		ft_strnew.c		ft_strmap.c		\
-				ft_strmapi.c	ft_strsub.c		ft_strtrim.c	\
-				ft_strjoin.c	ft_strsplit.c	ft_itoa.c		\
-				ft_strerr.c		ft_swap.c			\
-				ft_range.c		ft_rgb_to_int.c	ft_lstnew.c		\
-				ft_lstdelone.c	ft_lstdel.c		ft_lstadd.c		\
-				ft_tolower.c	ft_lstiter.c	ft_lstmap.c		\
-				ft_atoi.c		ft_bzero.c		ft_isalnum.c	\
-				ft_isalpha.c	ft_isdigit.c	ft_isprint.c	\
-				ft_isascii.c	ft_memset.c		ft_memcpy.c		\
-				ft_memccpy.c	ft_memmove.c	ft_memchr.c		\
-				ft_memcmp.c		ft_strlen.c		ft_strdup.c		\
-				ft_strcpy.c		ft_strncpy.c	ft_strcat.c		\
-				ft_strncat.c	ft_strlcat.c	ft_strchr.c		\
-				ft_strrchr.c	ft_strstr.c		ft_strnstr.c	\
-				ft_strcmp.c		ft_strncmp.c	ft_toupper.c	\
-				ft_display.c	ft_strrev.c		ft_strnlen.c	\
-				ft_find_whitespaces.c			get_next_line.c	\
-				ft_putwchar.c	ft_putwstr.c\
-				ft_wstrlen.c	ft_wstrncpy.c	ft_wstrsub.c	\
-				ft_pow.c ft_strchri.c
+LIBFT_FUNCTIONS = ft_putchar	ft_putendl		ft_putstr		\
+				ft_putnbr		ft_strclr 		ft_putnbr_fd	\
+				ft_putendl_fd	ft_putchar_fd	ft_putstr_fd	\
+				ft_striteri		ft_striter		ft_strequ		\
+				ft_strnequ		ft_memdel		ft_memalloc		\
+				ft_strdel		ft_strnew		ft_strmap		\
+				ft_strmapi		ft_strsub		ft_strtrim		\
+				ft_strjoin		ft_strsplit		ft_itoa			\
+				ft_strerr		ft_swap			ft_lstsort		\
+				ft_range		ft_rgb_to_int	ft_lstnew		\
+				ft_lstdelone	ft_lstdel		ft_lstadd		\
+				ft_tolower		ft_lstiter		ft_lstmap		\
+				ft_atoi			ft_bzero		ft_isalnum		\
+				ft_isalpha		ft_isdigit		ft_isprint		\
+				ft_isascii		ft_memset		ft_memcpy		\
+				ft_memccpy		ft_memmove		ft_memchr		\
+				ft_memcmp		ft_strlen		ft_strdup		\
+				ft_strcpy		ft_strncpy		ft_strcat		\
+				ft_strncat		ft_strlcat		ft_strchr		\
+				ft_strrchr		ft_strstr		ft_strnstr		\
+				ft_strcmp		ft_strncmp		ft_toupper		\
+				ft_display		ft_strrev		ft_strnlen		\
+				ft_find_whitespaces ft_backn_gnl get_next_line	\
+				ft_put_uint_base	ft_put_uintmax_base			\
+				ft_put_uintmax		ft_putwchar	ft_putwstr 		\
+				ft_wstrlen			ft_wstrncpy	ft_wstrsub		\
+				ft_maxlen_base		ft_pow 		ft_strchri		\
+				ft_strjoin_free ft_free_grid   ft_charinstr 	\
+				ft_strclen		ft_htoi							\
 				
-OBJ_FUNCTIONS = $(SRC_FUNCTIONS:.c=.o)
+PRINTF_FUNCTIONS = 	ft_printf		\
+					ft_buffering	\
+					ft_coloring		\
+					ft_conversion 	\
+					ft_number_puts	\
+					ft_parsing		\
+					ft_pointers		\
+					ft_printf_itoa	\
+					ft_puts			\
 
-HEADERS = libft.h
+OBJ_LIBFT = $(addprefix obj/, $(addsuffix .o, $(LIBFT_FUNCTIONS)))
+SRC_LIBFT = $(addprefix src/, $(addsuffix .c, $(LIBFT_FUNCTIONS)))
+
+OBJ_PRINTF = $(addprefix ft_printf/obj/, $(addsuffix .o, $(PRINTF_FUNCTIONS)))
+SRC_PRINTF = $(addprefix ft_printf/src/, $(addsuffix .c, $(PRINTF_FUNCTIONS)))
+
+HEADERS = -I./includes -I./ft_printf/includes
+HEADER_LIBFT = ./includes/libft.h
+HEADER_PRINTF = ./ft_printf/includes/ft_printf.h
+
+EOC = \033[0m
+GREEN = \e[38;5;132m
+RED = \e[38;5;96m
+PURPLE = \e[38;5;213m
+CYAN = \e[38;5;170m
 
 all: $(NAME)
-	
-$(NAME): $(OBJ_FUNCTIONS)
-	ar rcs $(NAME) $(OBJ_FUNCTIONS)
-	ranlib $(NAME)
-	
-$(OBJ_FUNCTIONS): %.o: %.c $(HEADERS)
-	gcc -o $@ $(FLAGS) -I. -c $<
+
+.PHONY: all clean
+.NOTPARALLEL: all $(NAME) clean fclean re 
+
+$(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF) $(HEADER_LIBFT) $(HEADER_PRINTF)
+	@printf " $(RED)>$(EOC) $(GREEN)$(NAME) is ready.$(EOC)\n"
+	@ar rcs $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF)
+	@ranlib $(NAME)
+
+$(OBJ_LIBFT): obj/%.o: src/%.c $(HEADER_LIBFT)
+	@$(CC) -o $@ $(FLAGS) $(HEADERS) -c $<
+	@printf "$(CYAN).$(EOC)"
+
+$(OBJ_PRINTF): ft_printf/obj/%.o: ft_printf/src/%.c $(HEADER_PRINTF)
+	@$(CC) -o $@ $(FLAGS) $(HEADERS) -c $<
+	@printf "$(PURPLE).$(EOC)"
 
 clean:
-	rm -rf $(OBJ_FUNCTIONS)
+	@rm -rf $(OBJ_LIBFT) $(OBJ_PRINTF)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
