@@ -76,7 +76,7 @@ typedef struct		s_fdf
 	float			x;
 	float			y;
 	t_coord			*coord;
-	t_rot   		*rot;
+	t_rot   		rot;
 	float			zoom;
 	float			height;
 	int				info;

@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/04 16:41:15 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/04 17:24:48 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_image			*init_image(void *mlx, t_image *image)
+t_image		*init_image(void *mlx, t_image *image)
 {
 	image->image = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
 	image->ptr = mlx_get_data_addr(image->image, &(image->bpp),
@@ -20,7 +20,7 @@ t_image			*init_image(void *mlx, t_image *image)
 	image->bpp /= 8;
 }
 
-static void		display_menu(t_fdf *fdf)
+static void	display_menu(t_fdf *fdf)
 {
 	t_image	*image;
 	int		width;

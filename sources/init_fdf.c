@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/04 17:12:09 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/04 17:32:26 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ t_fdf       *init_fdf(t_line **l, t_coord *c)
 		fdf->zoom = WIN_WIDTH / fdf->x;
 	fdf->height = 0.1;
 	fdf->info = 1;
-	fdf->rot->x= 0.0;
-	fdf->rot->y= 0.0;
-	fdf->rot->z= 0.0;
+	fdf->rot.x= 0.0;
+	fdf->rot.y= 0.0;
+	fdf->rot.z= 0.0;
 	fdf->music = 0;
 	init_coord(fdf);
 	return (fdf);
