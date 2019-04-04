@@ -6,26 +6,18 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/04 14:07:27 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/04 16:41:15 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static t_image	*init_image(void *image, int color, int width, int height)
+t_image			*init_image(void *mlx, t_image *image)
 {
-	t_image	*s_image;
-    int		i;
-
-    i = -1;
-	if (!(s_image = (t_image*)ft_memalloc(sizeof(t_image))))
-		mal_error();
-	s_image->ptr = image;
-	s_image->data = (int *)mlx_get_data_addr(s_image->ptr, &s_image->b,
-			&s_image->size, &s_image->end);
-    while (++i < height * width)
-		s_image->data[i] = color;
-	return (s_image);
+	image->image = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
+	image->ptr = mlx_get_data_addr(image->image, &(image->bpp),
+		&(image->size), &(image->end));
+	image->bpp /= 8;
 }
 
 static void		display_menu(t_fdf *fdf)
@@ -35,7 +27,7 @@ static void		display_menu(t_fdf *fdf)
 
 	width = 300;
 	image = init_image(mlx_new_image(fdf->mlx, width, WIN_HEIGHT),
-			0x262626, width, WIN_HEIGHT);
+			image);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, image->ptr, 0, 0);
 	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0xFFFFFF, "FDF Controls");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0xFFFFFF, "MAP:");
