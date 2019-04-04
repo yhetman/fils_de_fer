@@ -24,6 +24,12 @@ typedef struct			s_image
 	int 				*data;
 }						t_image;
 
+typedef struct s_line
+{
+    int         height;
+    int         color
+}               t_line;
+
 typedef struct  s_fdf
 {
     void        *win;

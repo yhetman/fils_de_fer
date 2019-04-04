@@ -6,66 +6,11 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/03/29 21:06:06 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/04 14:07:27 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-static int			save_ordinat(char *str)
-{
-	int		ordinat;
-	int		res;
-	int		fd;
-	char	*line;
-
-	ordinat = -1;
-	fd = open(str, O_RDONLY);
-	while ((++ordinat > -1 && (res = get_next_line(fd, &line))) > 0 )
-		ft_strdel(&line);
-	if (res < 0)
-		return (-1);
-	close(fd);
-	return (ordinat);
-}
-
-static int			save_absis(char *str)
-{
-	int		absis;
-	int		tmp;
-	int		i;
-	int		fd;
-	char	*line;
-
-	absis = 0;
-	fd = open(str, O_RDONLY);
-	while (get_next_line(fd, &line) && (tmp = 0) && (i = -1))
-	{
-		while (line[++i])
-			if (line[i] != ' ' && (line[i + 1] == ' ' || !line[i + 1]))
-				tmp++;
-		ft_strdel(&line);
-		if (!absis && absis != tmp)
-			absis = tmp;
-		else if (absis != tmp || !absis)
-			return (-1);
-	}
-	close(fd);
-	return (absis);
-}
-
-static int	validation(t_fdf *fdf)
-{
-	t_coord	*c;
-
-	c = (t_coord*)malloc(sizeof(t_coord));
-	if ((c->x = save_absis(fdf->line)) <= 0)
-		return (ft_strerr("ERROR: Invalid map."));
-	if ((c->y = save_ordinat(fdf->line)) < 0)
-		return (ft_strerr("ERROR: Invalid name of file."));
-	*fdf = init_fdf(init_line(fdf, c), c);
-	return (0);
-}
 
 static t_image	*init_image(void *image, int color, int width, int height)
 {
@@ -73,8 +18,8 @@ static t_image	*init_image(void *image, int color, int width, int height)
     int		i;
 
     i = -1;
-	//if (!(s_image = (t_image*)ft_memalloc(sizeof(t_image))))
-	//	mal_error();
+	if (!(s_image = (t_image*)ft_memalloc(sizeof(t_image))))
+		mal_error();
 	s_image->ptr = image;
 	s_image->data = (int *)mlx_get_data_addr(s_image->ptr, &s_image->b,
 			&s_image->size, &s_image->end);
@@ -126,20 +71,8 @@ static	void mlx_manager(t_fdf *fdf)
 	display_menu(fdf);
 	mlx_key_hook(win, exit_hook, fdf);
 	//mlx_hook(win, 2, 0, define_keycode, fdf);
-	//mlx_mouse_hook(win, zoom_hook, f)df;
+	//mlx_mouse_hook(win, zoom_hook, fdf);
     mlx_loop(fdf->mlx);
-}
-
-void		mal_error(void)
-{
-	ft_strerr("ERROR:\t Malloc failed.\n");
-	exit(EXIT_FAILURE);
-}
-
-void		arg_error(void)
-{
-	ft_strerr("ERROR:\t Wrong number of arguments.\nUSAGE:\t ./fdf <map_filename>");
-	exit(EXIT_FAILURE);
 }
 
 int 		main(int argc, char **argv)
