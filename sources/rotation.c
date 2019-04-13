@@ -12,19 +12,19 @@
 
 #include "../includes/fdf.h"
 
-t_point rotation(t_fdf *fdf, float x, float y, float z)
+t_color		rotation(t_fdf *fdf, float x, float y, float z)
 {
-	t_point point;
+	t_color	point;
 
-	point.x = x * (cos(fdf->rot.y) * cos(fdf->rot.z))
+	point.r = x * (cos(fdf->rot.y) * cos(fdf->rot.z))
 			- y * (sin(fdf->rot.z) * cos(fdf->rot.y))
 			+ z * (sin(fdf->rot.y));
-	point.y = x * (sin(fdf->rot.x) * sin(fdf->rot.y) *
+	point.g = x * (sin(fdf->rot.x) * sin(fdf->rot.y) *
 	cos(fdf->rot.z) + cos(fdf->rot.x) * sin(fdf->rot.z))
 			+ y * (-sin(fdf->rot.x) * sin(fdf->rot.y) *
 	sin(fdf->rot.z) + cos(fdf->rot.x) * cos(fdf->rot.z))
 			- z * (sin(fdf->rot.x) * cos(fdf->rot.y));
-	point.z = x * (-cos(fdf->rot.x) * sin(fdf->rot.y) *
+	point.b = x * (-cos(fdf->rot.x) * sin(fdf->rot.y) *
 	cos(fdf->rot.z) - sin(fdf->rot.x) * sin(fdf->rot.z))
 			+ y * (cos(fdf->rot.x) * sin(fdf->rot.y) *
 	sin(fdf->rot.z) + sin(fdf->rot.x) * cos(fdf->rot.z))

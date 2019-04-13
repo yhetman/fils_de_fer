@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/04 17:24:48 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/14 01:48:42 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_image		*init_image(void *mlx, t_image *image)
 	image->ptr = mlx_get_data_addr(image->image, &(image->bpp),
 		&(image->size), &(image->end));
 	image->bpp /= 8;
+	return(image)
 }
 
 static void	display_menu(t_fdf *fdf)
@@ -74,7 +75,7 @@ int 		main(int argc, char **argv)
 	if (argc != 2)
 		arg_error();
 	fdf.line = argv[1];
-	if (validation(&fdf))
+	if (is_valid(&fdf))
 		return (1);
 	//system("afplay -v &");
 	mlx_manager(&fdf);

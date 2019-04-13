@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/04 16:36:00 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/14 01:36:08 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int			save_absis(char *str)
 	return (absis);
 }
 
-int	validation(t_fdf *fdf)
+int	is_valid(t_fdf *fdf)
 {
 	t_coord	*c;
 	char 	*line;
@@ -62,9 +62,9 @@ int	validation(t_fdf *fdf)
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
 	if ((c->y = save_ordinat(fdf->line)) < 0)
-		return (ft_strerr("Error: Invalid name of file."));
+		return (ft_printf("%{red}Error: Invalid name of file.%{eoc}"));
 	if ((c->x = save_absis(fdf->line)) <= 0)
-		return (ft_strerr("Error: Invalid map."));
+		return (ft_printf("%{red}Error: Invalid map.%{eoc}"));
 	line = NULL;
 	fdf = init_fdf(init_line(fdf, c, line), c);
 	return (0);

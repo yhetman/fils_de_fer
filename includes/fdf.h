@@ -17,13 +17,13 @@ typedef struct  	s_coord
     int         	y;
 }               	t_coord;
 
-typedef struct		s_point
+/*typedef struct		s_point
 {
 	int				x;
 	int				y;
 	int				z;
 	int				decimal;
-}					t_point;
+}					t_point;*/
 
 typedef struct		s_rotation
 {
@@ -72,7 +72,7 @@ typedef struct		s_fdf
 	char 			*line;
 	t_image			image;
 	t_line			**l;
-	t_point			**points;
+	t_color			**points;
 	float			x;
 	float			y;
 	t_coord			*coord;
@@ -84,8 +84,10 @@ typedef struct		s_fdf
 	t_palette		*palette;
 }					t_fdf;
 
+void	mal_error(void);
+void	arg_error(void);
 int		exit_hook(int keycode, void *param);
-int		validation(t_fdf *fdf);
+int		is_valid(t_fdf *fdf);
 t_line 	**init_line(t_fdf *fdf, t_coord *c, char *line);
 t_image	*init_image(void *mlx, t_image *image);
 t_fdf	*init_fdf(t_line **l, t_coord *c);
