@@ -3,69 +3,73 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+         #
+#    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/14 01:12:39 by yhetman           #+#    #+#              #
-#    Updated: 2019/04/14 01:20:39 by yhetman          ###   ########.fr        #
+#    Updated: 2019/04/14 21:57:48 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re mclean mfclean mre
+NAME		=	fdf
+OS			=	$(shell uname)
 
-NAME		:=	fdf
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror
+HEADER		=	-I libft/includes -I ./includes
 
-SRC_PATH	:=	sources/
+ifeq ($(OS), Linux)
+FLAGS_PLUS	= -L ./minilibx -lmlx -lm -lXext -lX11
+else
+FLAGS_PLUS	= -L ./minilibx_macos -lmlx -framework OpenGL -framework AppKit
+endif
 
-INC_PATH	:=	includes/
+FILES		=	main init_fdf init_line is_valid \
+				rotation hooks error
 
-LIB_PATH	:=	libft/
+SRC			=	$(addprefix sources/, $(addsuffix .c, $(FILES)))
+OBJ			=	$(addprefix obj/, $(addsuffix .o, $(FILES)))
 
-OBJ_PATH	:=	obj/
-
-CC :=		clang
-
-CFLAGS :=	-g -Wall -Wextra -Werror
-
-IFLAGS :=	-I $(INC_PATH) -I $(LIB_PATH)
-
-LIB :=		$(LIB_PATH)libft.a
-
-HFILES :=	fdf
-
-FILES :=	main init_fdf init_line is_valid \
-			rotation hooks error
-
-HDRS :=		$(addprefix $(INC_PATH), $(addsuffix .h, $(HFILES)))
-SRCS :=		$(addprefix $(SRC_PATH), $(addsuffix .c, $(FILES)))
-OBJS :=		$(addprefix $(OBJ_PATH), $(SRCS:%.c=%.o))
+obj/%.o: sources/%.c
+	@$(CC) $(FLAGS) -c -o $@ $< $(HEADER)
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJ_PATH) $(OBJS)
-	$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LIB) -o $(NAME)
+$(NAME): libft/libft.a mlx $(OBJ)
+	@#make -C libft
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I /usr/local/include -L /usr/local/lib \
+	-lmlx libft/libft.a -framework OpenGL -framework AppKit
 
-$(LIB):
-	make -C $(LIB_PATH)
+libft/libft.a:
+	make -C libft
 
-$(OBJ_PATH):
-	mkdir -p $(OBJ_PATH)$(SRC_PATH)
+ifeq ($(OS), Linux)
+mlx:
+	@make -C minilibx
+else
+mlx:
+	@make -C minilibx_macos
+endif
 
-$(OBJ_PATH)%.o:	%.c $(HDRS)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
-clean:	mclean
-		make clean -C $(LIB_PATH)
+clean: clean_mlx
+	make -C libft clean
+	@rm -rf $(OBJ)
 
-fclean:	mfclean
-		make fclean -C $(LIB_PATH)
+ifeq ($(OS), Linux)
+clean_mlx:
+	@make -C minilibx clean
+else
+clean_mlx:
+	@make -C minilibx_macos clean
+endif
 
-re:		fclean all
+fclean: clean_mlx
+	make -C libft fclean
+	@rm -rf $(OBJ)
+	@rm -rf $(NAME)
 
-mclean:
-		rm -rf $(OBJ_PATH)
 
-mfclean:
-		rm -f $(NAME)
-		rm -rf $(OBJ_PATH)
+re: fclean all
 
-mre:	mfclean all
+.PHONY: all clean fclean re
+.NOTPARALLEL: all $(NAME) libft/libft.a mlx clean clean_mlx fclean re

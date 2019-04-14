@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 19:14:41 by yhetman           #+#    #+#             */
-/*   Updated: 2019/03/29 10:51:56 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/03/08 14:22:03 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free_grid(char ***grid)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*grid)[i] != NULL)

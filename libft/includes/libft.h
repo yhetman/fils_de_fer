@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 17:39:33 by yhetman           #+#    #+#             */
-/*   Updated: 2019/03/29 11:20:30 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/14 21:51:10 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdarg.h>
-# include <wchar.h>
 # include <stdbool.h>
+# include <wchar.h>
 # include <errno.h>
 # include <string.h>
-# include <math.h>
-# include <stdio.h>
-# include <mlx.h>
-# include "../ft_printf/includes/ft_printf.h"
-
+# include <sys/types.h>
+# include <time.h>
+# include "ft_printf.h"
 # define RED		"\033[31m"
 # define GREEN		"\033[32m"
 # define YELLOW		"\033[33m"
@@ -33,7 +31,7 @@
 # define PURPLE		"\033[35m"
 # define CYAN		"\033[36m"
 # define EOC		"\033[0m"
-# define BUFF_SIZE	128
+# define BUFF_SIZE	4096
 
 typedef struct		s_fdl
 {
@@ -66,7 +64,7 @@ typedef struct		s_color
 }					t_color;
 
 int					ft_display(char *argv);
-int					ft_rgb_to_int(t_color color);
+int					ft_rgb_to_int(int r, int g, int b);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 void				ft_lstdel(t_list **alst, void(*del)(void*, size_t));
@@ -99,13 +97,14 @@ int					ft_putchar_fd(char c, int fd);
 int					ft_putstr_fd(const char *s, int fd);
 void				ft_putendl_fd(const char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
+int					ft_atoi(const char *str);
 int					ft_htoi(char *hexa);
 void				ft_bzero(void *s, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t				ft_strlen(const char *str);
+size_t				ft_nbrlen(int n);
 int					ft_strclen(const char *s, char c);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
@@ -137,7 +136,7 @@ int					ft_tolower(int ch);
 int					ft_toupper(int ch);
 int					*ft_range(int first, int last);
 void				ft_swap(int *a, int *b);
-int					ft_strerr(char *str);
+void				ft_strerr(char *str);
 int					get_next_line(const int fd, char **line);
 int					ft_backn_gnl(const int fd, char **line);
 int					ft_putwchar(wchar_t w);

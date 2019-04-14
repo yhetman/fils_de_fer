@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_fdf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 02:28:50 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/14 21:28:59 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void init_coord(t_fdf *fdf)
+static void	init_coord(t_fdf *fdf)
 {
-    t_coord *c;
+	t_coord	*c;
 
-  if (!(c = (t_coord*)malloc(sizeof(t_coord))))
+	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
 	c->y = -1;
 	fdf->points = (t_color **)malloc(sizeof(t_color *) * fdf->y);
@@ -40,9 +40,9 @@ static void init_coord(t_fdf *fdf)
 	}
 }
 
-t_fdf       *init_fdf(t_line **l, t_coord *c)
+t_fdf		*init_fdf(t_line **l, t_coord *c)
 {
-    t_fdf	*fdf;
+	t_fdf	*fdf;
 
 	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 		mal_error();
@@ -52,14 +52,16 @@ t_fdf       *init_fdf(t_line **l, t_coord *c)
 	fdf->l = l;
 	fdf->x = c->x;
 	fdf->y = c->y;
-	ft_bzero(fdf->coord, sizeof(coord));
+	ft_bzero(fdf->coord, sizeof(t_coord));
 	if (c->y >= c->x)
 		fdf->zoom = WIN_HEIGHT / fdf->y;
 	else
 		fdf->zoom = WIN_WIDTH / fdf->x;
 	fdf->height = 0.1;
 	fdf->info = 1;
-	ft_bzero(fdf->rot, sizeof(rot))
+	fdf->rot.x = 0;
+	fdf->rot.y = 0;
+	fdf->rot.z = 0;
 	init_coord(fdf);
 	return (fdf);
 }

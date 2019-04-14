@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rgb_to_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 18:55:27 by yhetman           #+#    #+#             */
-/*   Updated: 2018/11/06 18:55:37 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/07 17:07:04 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_rgb_to_int(t_color shade)
+int	ft_rgb_to_int(int r, int g, int b)
 {
-	return (shade.r << 16 | shade.g << 8 | shade.b);
+	return (r << 16 | g << 8 | b);
 }

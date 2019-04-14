@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/03 15:10:32 by yhetman           #+#    #+#              #
-#    Updated: 2019/02/08 19:07:48 by yhetman          ###   ########.fr        #
+#    Updated: 2019/04/14 21:50:39 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,16 @@ LIBFT_FUNCTIONS = ft_putchar	ft_putendl		ft_putstr		\
 				ft_put_uintmax		ft_putwchar	ft_putwstr 		\
 				ft_wstrlen			ft_wstrncpy	ft_wstrsub		\
 				ft_maxlen_base		ft_pow 		ft_strchri		\
-				ft_strjoin_free ft_free_grid   ft_charinstr 	\
-				ft_strclen		ft_htoi							\
+				ft_strjoin_free		ft_free_grid ft_charinstr 	\
+				ft_strclen	ft_nbrlen	ft_htoi		ft_printf	\
+				ft_buffering	\
+				ft_coloring		\
+				ft_conversion 	\
+				ft_number_puts	\
+				ft_parsing		\
+				ft_pointers		\
+				ft_printf_itoa	\
+				ft_puts			\
 				
 PRINTF_FUNCTIONS = 	ft_printf		\
 					ft_buffering	\
@@ -54,15 +62,16 @@ PRINTF_FUNCTIONS = 	ft_printf		\
 					ft_printf_itoa	\
 					ft_puts			\
 
+
 OBJ_LIBFT = $(addprefix obj/, $(addsuffix .o, $(LIBFT_FUNCTIONS)))
 SRC_LIBFT = $(addprefix src/, $(addsuffix .c, $(LIBFT_FUNCTIONS)))
 
-OBJ_PRINTF = $(addprefix ft_printf/obj/, $(addsuffix .o, $(PRINTF_FUNCTIONS)))
-SRC_PRINTF = $(addprefix ft_printf/src/, $(addsuffix .c, $(PRINTF_FUNCTIONS)))
+#OBJ_PRINTF = $(addprefix ft_printf/obj/, $(addsuffix .o, $(PRINTF_FUNCTIONS)))
+#SRC_PRINTF = $(addprefix ft_printf/src/, $(addsuffix .c, $(PRINTF_FUNCTIONS)))
 
 HEADERS = -I./includes -I./ft_printf/includes
-HEADER_LIBFT = ./includes/libft.h
-HEADER_PRINTF = ./ft_printf/includes/ft_printf.h
+HEADER_LIBFT = ./includes/libft.h ./includes/ft_printf.h
+#HEADER_PRINTF = ./ft_printf/includes/ft_printf.h
 
 EOC = \033[0m
 GREEN = \e[38;5;132m
@@ -75,10 +84,15 @@ all: $(NAME)
 .PHONY: all clean
 .NOTPARALLEL: all $(NAME) clean fclean re 
 
-$(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF) $(HEADER_LIBFT) $(HEADER_PRINTF)
+OBJ_PATH = obj
+
+$(NAME): $(OBJ_PATH) $(OBJ_LIBFT) $(OBJ_PRINTF) $(HEADER_LIBFT) $(HEADER_PRINTF)
 	@printf " $(RED)>$(EOC) $(GREEN)$(NAME) is ready.$(EOC)\n"
 	@ar rcs $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF)
 	@ranlib $(NAME)
+
+$(OBJ_PATH):
+	mkdir -p $(OBJ_PATH)
 
 $(OBJ_LIBFT): obj/%.o: src/%.c $(HEADER_LIBFT)
 	@$(CC) -o $@ $(FLAGS) $(HEADERS) -c $<

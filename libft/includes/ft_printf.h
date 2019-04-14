@@ -6,14 +6,14 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:12:47 by yhetman           #+#    #+#             */
-/*   Updated: 2019/01/17 18:55:12 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/03/15 19:44:37 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../../includes/libft.h"
+# include "libft.h"
 
 # define FLAG_HASH		(1 << 0)
 # define FLAG_SPACE		(1 << 1)
@@ -31,8 +31,7 @@
 # define WIDTH			(1 << 13)
 # define PRECIS			(1 << 14)
 # define POINTER		(1 << 15)
-
-# define BUFF_SIZE	128
+# define BUFF_SIZE		4096
 
 typedef struct			s_shit
 {

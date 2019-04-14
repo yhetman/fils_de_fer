@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 01:55:08 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/14 21:31:30 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **l)
 {
 	t_coord *in;
 
-    if (!(in = (t_coord *)malloc(sizeof(t_coord))))
-        mal_error();
+	if (!(in = (t_coord *)malloc(sizeof(t_coord))))
+		mal_error();
 	in->y = -1;
 	while (++in->y < c->y)
 	{
@@ -51,13 +51,13 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **l)
 	return (l);
 }
 
-t_line          **init_line(t_fdf *fdf, t_coord *c, char *line)
+t_line			**init_line(t_fdf *fdf, t_coord *c, char *line)
 {
 
-	int				i;
-	int				fd;
-	t_line			**l;
-	char			***grid;
+	int			i;
+	int			fd;
+	t_line		**l;
+	char		***grid;
 
 	i = 0;
 	if (!(grid = (char ***)malloc(sizeof(char **) * (c->y + 1))))

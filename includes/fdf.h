@@ -4,18 +4,18 @@
 #include "../libft/includes/libft.h"
 //#include "structs.h"
 #include <math.h>
-#include <mlx.h>
+#include "mlx.h"
 
 # define WIN_HEIGHT 1000
 # define WIN_WIDTH  1000
-# define EXIT_CODE    53
+# define EXIT_CODE	53
 
 
-typedef struct  	s_coord
+typedef struct		s_coord
 {
-    int         	x;
-    int         	y;
-}               	t_coord;
+	int				x;
+	int				y;
+}					t_coord;
 
 /*typedef struct		s_point
 {
@@ -34,9 +34,9 @@ typedef struct		s_rotation
 
 typedef struct		s_line
 {
-    int       		 height;
-    int       		 color;
-}             		 t_line;
+	int				height;
+	int				color;
+}			 		t_line;
 
 typedef struct		s_image
 {
@@ -76,7 +76,7 @@ typedef struct		s_fdf
 	float			x;
 	float			y;
 	t_coord			*coord;
-	t_rot   		rot;
+	t_rot			rot;
 	float			zoom;
 	float			height;
 	int				info;
@@ -91,5 +91,5 @@ int		is_valid(t_fdf *fdf);
 t_line 	**init_line(t_fdf *fdf, t_coord *c, char *line);
 t_image	*init_image(void *mlx, t_image *image);
 t_fdf	*init_fdf(t_line **l, t_coord *c);
-t_point	rotation(t_fdf *fdf, float x, float y, float z);
+t_color	rotation(t_fdf *fdf, float x, float y, float z);
 #endif

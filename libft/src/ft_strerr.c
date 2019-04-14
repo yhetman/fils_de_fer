@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strerr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhetman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 15:36:40 by yhetman           #+#    #+#             */
-/*   Updated: 2019/03/29 11:18:46 by yhetman          ###   ########.fr       */
+/*   Updated: 2018/10/24 17:48:54 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include <libft.h>
 
-int	ft_strerr(char *str)
+void	ft_strerr(char *str)
 {
-	return(ft_putstr_fd(str, 2));
+	ft_putstr_fd(str, 2);
 }
