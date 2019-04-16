@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 21:47:57 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/16 16:18:42 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	display_menu(t_fdf *fdf)
 	ft_memdel((void*)&image);
 }
 
-static	void mlx_manager(t_fdf *fdf)
+static	void mlx_manager(t_fdf **fdf)
 {
 	void	*mlx;
 	void	*win;
@@ -54,28 +54,30 @@ static	void mlx_manager(t_fdf *fdf)
 
 	if (!(mlx = mlx_init()))
 		exit(EXIT_FAILURE);
-	split = ft_strsplit(fdf->line, '/');
+	split = ft_strsplit((*fdf)->line, '/');
 	while (*split)
 		split++;
 	split--;
 	if (!(win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, *split)))
 		exit(EXIT_FAILURE);
-	fdf->mlx = mlx;
-	fdf->win = win;
-	display_menu(fdf);
-	mlx_key_hook(win, exit_hook, fdf);
+	(*fdf)->mlx = mlx;
+	(*fdf)->win = win;
+	display_menu(*fdf);
+	mlx_key_hook(win, exit_hook, *fdf);
 	//mlx_hook(win, 2, 0, define_keycode, fdf);
 	//mlx_mouse_hook(win, zoom_hook, fdf);
-	mlx_loop(fdf->mlx);
+	mlx_loop((*fdf)->mlx);
 }
 
 int 		main(int argc, char **argv)
 {
-	t_fdf	fdf;
+	t_fdf	*fdf;
 
 	if (argc != 2)
 		arg_error();
-	fdf.line = argv[1];
+	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
+		mal_error();
+	ft_strcpy(fdf->line, argv[1]);
 	if (is_valid(&fdf))
 		return (1);
 	//ft_music(); system("afplay -v &");

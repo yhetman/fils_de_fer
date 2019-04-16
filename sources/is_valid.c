@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 21:56:13 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/16 16:17:24 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ static int			save_absis(char *str)
 	return (absis);
 }
 
-int	is_valid(t_fdf *fdf)
+int	is_valid(t_fdf **fdf)
 {
 	t_coord	*c;
 	char	*line;
 
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
-	if ((c->y = save_ordinat(fdf->line)) < 0)
+	if ((c->y = save_ordinat((*fdf)->line)) < 0)
 		return (ft_printf("%{red}Error: Invalid name of file.%{eoc}\n"));
-	if ((c->x = save_absis(fdf->line)) <= 0)
+	if ((c->x = save_absis((*fdf)->line)) <= 0)
 		return (ft_printf("%{red}Error: Invalid map.%{eoc}\n"));
 	line = NULL;
-	fdf = init_fdf(init_line(fdf, c, line), c);
+	*fdf = init_fdf(init_line(*fdf, c, line), c);
 	return (0);
 }
