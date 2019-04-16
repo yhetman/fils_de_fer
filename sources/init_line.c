@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 00:14:51 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 00:37:09 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 	if (!(in = (t_coord *)malloc(sizeof(t_coord))))
 		mal_error();
 	in->y = -1;
-	while (++in->y < c->y)
+	while (++in->y < c->y && (in->x = -1))
 	{
 		line[in->y] = (t_line *)malloc(sizeof(t_line) * c->x);
-		in->x = -1;
 		while (++in->x < c->x)
 		{
 			line[in->y][in->x].height = ft_atoi(str[in->y][in->x]);
