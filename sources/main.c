@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/16 16:18:42 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/16 23:26:40 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int 		main(int argc, char **argv)
 
 	if (argc != 2)
 		arg_error();
-	if (!(fdf = (t_fdf*)malloc(sizeof(t_fdf))))
-		mal_error();
-	ft_strcpy(fdf->line, argv[1]);
-	if (is_valid(&fdf))
+	if (is_valid(&fdf,  argv[1]))
 		return (1);
 	//ft_music(); system("afplay -v &");
 	mlx_manager(&fdf);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 21:31:30 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 00:14:51 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		coloring(char *line, int *color)
 	}
 }
 
-static t_line	**fill_the_line(char ***str, t_coord *c, t_line **l)
+static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 {
 	t_coord *in;
 
@@ -40,39 +40,40 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **l)
 	in->y = -1;
 	while (++in->y < c->y)
 	{
-		l[in->y] = (t_line *)malloc(sizeof(t_line) * c->x);
+		line[in->y] = (t_line *)malloc(sizeof(t_line) * c->x);
 		in->x = -1;
 		while (++in->x < c->x)
 		{
-			l[in->y][in->x].height = ft_atoi(str[in->y][in->x]);
-			coloring(str[in->y][in->x], &l[in->y][in->x].color);
+			line[in->y][in->x].height = ft_atoi(str[in->y][in->x]);
+			coloring(str[in->y][in->x], &line[in->y][in->x].color);
 		}
 	}
-	return (l);
+	return (line);
 }
 
-t_line			**init_line(t_fdf *fdf, t_coord *c, char *line)
+t_line			**init_line(t_fdf *fdf, t_coord *c, char *map)
 {
-
 	int			i;
 	int			fd;
-	t_line		**l;
+	char		*str;
+	t_line		**line;
 	char		***grid;
 
 	i = 0;
+	str = NULL;
 	if (!(grid = (char ***)malloc(sizeof(char **) * (c->y + 1))))
 		 mal_error();
 	grid[c->y] = 0;
-	fd = open(fdf->line, O_RDONLY);
-	while (get_next_line(fd, &line))
+	fd = open(map, O_RDONLY);
+	while (get_next_line(fd, &str))
 	{
-		grid[i++] = ft_strsplit(line, ' ');
-		ft_strdel(&line);
+		grid[i++] = ft_strsplit(str, ' ');
+		ft_strdel(&str);
 	}
 	close(fd);
-	if (!(l = (t_line **)malloc(sizeof(t_line *) * c->y)))
+	if (!(line = (t_line **)malloc(sizeof(t_line *) * c->y)))
 		 mal_error();
-	l = fill_the_line(grid, c, l);
+	line = fill_the_line(grid, c, line);
 	ft_free_grid(grid);
-	return (l);
+	return (line);
 }
