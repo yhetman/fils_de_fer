@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 15:31:06 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:03:18 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ int			is_valid(t_fdf **fdf, char *map)
 		mal_error();
 	ft_bzero(c, sizeof(t_coord));
 	if ((c->x = save_absis(map)) <= 0)
-		return (ft_printf("%{red}Error: Invalid map.%{eoc}\n"));
+		map_error();
 	if ((c->y = save_ordinat(map)) < 0)
-		return (ft_printf("%{red}Error: Invalid name of file.%{eoc}\n"));
+		file_error();
 	*fdf = init_fdf(init_line(c, map), c);
 	return (0);
 }

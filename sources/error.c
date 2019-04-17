@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:06:45 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 15:34:19 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 16:57:16 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,27 @@ void	mal_error(void)
 	exit(EXIT_FAILURE);
 }
 
+void	file_error(void)
+{
+	ft_printf("%{red}Error: Invalid name of file.%{eoc}\n");
+	exit(EXIT_FAILURE);
+}
+
+void	map_error(void)
+{
+	ft_printf("%{red}Error: Invalid map.%{eoc}\n");
+	exit(EXIT_FAILURE);
+}
+
+void	mlx_error(void)
+{
+	ft_printf("%{red}Error: troubles with creating window.%{eoc}\n");
+	exit(EXIT_FAILURE);
+}
+
 void	arg_error(void)
 {
-	ft_printf("ERROR:\t Wrong number of arguments.\n");
-	ft_printf("USAGE:\t ./fdf <map_filename>\n");
+	ft_printf("%{red}ERROR:\t Wrong number of arguments.\n");
+	ft_printf("%{blue}USAGE:\t ./fdf <map_filename>%{eoc}\n");
 	exit(EXIT_FAILURE);
 }

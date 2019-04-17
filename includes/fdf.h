@@ -69,9 +69,9 @@ typedef struct		s_fdf
 {
 	void			*mlx;
 	void			*win;
-	char 			*line;
+	char			*name;
 	t_image			image;
-	t_line			**l;
+	t_line			**line;
 	t_color			**points;
 	float			x;
 	float			y;
@@ -84,8 +84,11 @@ typedef struct		s_fdf
 	t_palette		*palette;
 }					t_fdf;
 
+void	mlx_error(void);
+void	map_error(void);
 void	mal_error(void);
 void	arg_error(void);
+void	file_error(void);
 int		exit_hook(int keycode, void *param);
 int		is_valid(t_fdf **fdf, char *str);
 t_line 	**init_line(t_coord *c, char *line);

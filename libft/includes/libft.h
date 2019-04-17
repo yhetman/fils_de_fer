@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 17:39:33 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 21:51:10 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 16:39:55 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				ft_putendl_fd(const char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_itoa(int n);
 int					ft_atoi(const char *str);
-int					ft_htoi(char *hexa);
+int					ft_htoi(const char *hexa);
 void				ft_bzero(void *s, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -174,9 +174,11 @@ int					ft_charinstr(char *str, char *search);
 # define POW(x)					((x) * (x))
 # define AVERAGE(x, y)			(((x) + (y)) / 2.0)
 # define STRERR					strerror
-
+# define COS(c)					cos(c)
+# define SIN(c)					sin(c)
 # define IS_ASCII(c)			(!(c >> 7))
-# define IS_BLANK(c)			(c == ' ' || c == '\t')
+# define IS_BLANK(c)			(c == ' ' || c == '\t' || c == '\n')
+# define IS_WHITE(c)			(c == '\f' || c == '\v' || c == '\r')
 # define IS_DIGIT(c)			((unsigned int)(c - '0') < 10)
 # define IS_GRAPH(c)			((unsigned int)(c - '!') < 94)
 # define IS_LOWER(c)			((unsigned int)(c - 'a') < 26)
@@ -184,10 +186,10 @@ int					ft_charinstr(char *str, char *search);
 # define IS_CNTRL(c)			(!IS_PRINT(c))
 # define IS_UPPER(c)			((unsigned int)(c - 'A') < 26)
 # define IS_ALPHA(c)			(IS_LOWER(c) || IS_UPPER(c))
-# define IS_ALNUM(c)			(IS_ALPHA(c) || IS_DIGIT(c))
+# define IS_ALNUM(c)			(IS_DIGIT(c) || IS_ALPHA(c))
 # define IS_PUNCT(c)			(IS_PRINT(c) && !FT_ISALNUM(c) && c != ' ')
 # define IS_SPACE(c)			((unsigned int)(c - '\t') < 5)
-
+# define IS_SIGN(c)				(c == '+' || c == '-')
 # define TO_ASCII(c)			(c & 0x7F)
 # define TO_LOWER(c)			(IS_UPPER(c) ? c + ' ' : c)
 # define TO_UPPER(c)			(IS_LOWER(c) ? c - ' ' : c)

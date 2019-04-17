@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 15:37:19 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:17:01 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_image		*init_image(void *mlx, t_image *image)
 	return (image);
 }
 
-static void	display_menu(t_fdf *fdf)
+static void	display_menu(t_fdf *fdf, char *name)
 {
 	t_image	*image;
 	int		width;
@@ -31,9 +31,9 @@ static void	display_menu(t_fdf *fdf)
 	image = init_image(mlx_new_image(fdf->mlx, width, WIN_HEIGHT),
 			image);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, image->ptr, 0, 0);
-	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0xFFFFFF, "FDF Controls");
+	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0xFFFFFF, "Fils_de_Fer Controls");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0xFFFFFF, "MAP:");
-	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0xFFFFFF, fdf->line);
+	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0xFFFFFF, name);
 	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0xFFFFFF,
 			"TO ROTATE USE: ^ v < >");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0xFFFFFF,
@@ -46,38 +46,27 @@ static void	display_menu(t_fdf *fdf)
 	ft_memdel((void*)&image);
 }
 
-static void	mlx_manager(t_fdf **fdf)
+static void	mlx_manager(t_fdf *fdf, char *name)
 {
-	void	*mlx;
-	void	*win;
-	char	**split;
-
-	if (!(mlx = mlx_init()))
-		exit(EXIT_FAILURE);
-	split = ft_strsplit((*fdf)->line, '/');
-	while (*split)
-		split++;
-	split--;
-	if (!(win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, *split)))
-		exit(EXIT_FAILURE);
-	(*fdf)->mlx = mlx;
-	(*fdf)->win = win;
-	display_menu(*fdf);
-	mlx_key_hook(win, exit_hook, *fdf);
+	init_image(fdf->mlx, &fdf->image);
+	display_menu(fdf, name);
+	mlx_key_hook(fdf->win, exit_hook, fdf);
 	//mlx_hook(win, 2, 0, define_keycode, fdf);
 	//mlx_mouse_hook(win, zoom_hook, fdf);
-	mlx_loop((*fdf)->mlx);
 }
 
 int			main(int argc, char **argv)
 {
 	t_fdf	*fdf;
+	char	*name;
 
+	name = argv[1];
 	if (argc != 2)
 		arg_error();
 	if (is_valid(&fdf, argv[1]))
 		return (1);
 	//ft_music(); system("afplay -v &");
-	mlx_manager(&fdf);
+	mlx_manager(fdf, name);
+	mlx_loop(fdf->mlx);
 	return (0);
 }

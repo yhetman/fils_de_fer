@@ -6,45 +6,41 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:03:36 by yhetman           #+#    #+#             */
-/*   Updated: 2019/03/29 10:53:29 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 16:27:26 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	integer(char h)
+int			ft_hexa(const char *hexa)
 {
-	if (h < 'a' || h > 'f')
-		if (h < 'A' || h > 'F')
-			if (h < '0' || h > '9')
-				return (0);
-	if (h >= 'a' && h <= 'f')
-		h = ft_toupper(h);
-	if (h >= 'A' && h <= 'F')
-		return (h - 'A' + 10);
-	return (h - '0');
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (IS_ALNUM(hexa[i]))
+	{
+		if (IS_DIGIT(hexa[i]))
+			n = n * 16 + (int)hexa[i++] - '0';
+		else if (hexa[i] >= 'A' && hexa[i] <= 'F')
+			n = n * 16 + (int)hexa[i++] - 'A' + 10;
+		else
+			n = n * 16 + (int)hexa[i++] - 'a' + 10;
+	}
+	return (n);
 }
 
-int			ft_htoi(char *hexa)
+int			ft_htoi(const char *hexa)
 {
-	int		i;
-	int		j;
-	int		power;
-	int		result;
+	size_t		i;
+	int			sign;
 
-	result = 0;
-	power = 1;
-	if (!hexa || (i = ft_strlen(hexa) - 1) == 0)
-		return (0);
-	j = -1;
-	if (hexa[++j] == '0')
-		if (hexa[j] == 'x' || hexa[j] == 'X')
-			j++;
-	while (i >= j)
-	{
-		result += integer(hexa[i]) * power;
-		power *= 16;
-		i--;
-	}
-	return (result);
+	i = 0;
+	sign = 1;
+	while (IS_BLANK(hexa[i]) || IS_WHITE(hexa[i]))
+		i++;
+	if (IS_SIGN(hexa[i]))
+		i++;
+	return (sign * ft_hexa(hexa + i));
 }
