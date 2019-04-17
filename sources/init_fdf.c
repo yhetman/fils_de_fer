@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 17:07:26 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 18:44:06 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	init_points(t_fdf *fdf)
 		fdf->points[c->y] = (t_color *)malloc(sizeof(t_color) * fdf->x);
 		while (++c->x < fdf->x)
 		{
-			fdf->points[c->y][c->x] =
-				rotation(fdf, fdf->zoom * (c->x - fdf->x / 2),
+			fdf->points[c->y][c->x] = 
+				counting_rotation(fdf, fdf->zoom * (c->x - fdf->x / 2),
 				fdf->zoom * (c->y - fdf->y / 2),
 				fdf->zoom * fdf->height * fdf->line[c->y][c->x].height);
 			fdf->points[c->y][c->x].r += WIN_WIDTH / 2;
@@ -52,9 +52,10 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	fdf->y = c->y;
 	fdf->height = 0.1;
 	fdf->info = 1;
-	fdf->rot.x = 0;
-	fdf->rot.y = 0;
-	fdf->rot.z = 0;
+	//fdf->rot.x = 0;
+	//fdf->rot.y = 0;
+	//fdf->rot.z = 0;
+	ft_bzero(&(fdf->rot), sizeof(t_rot));
 	if (c->y >= c->x)
 		fdf->zoom = WIN_HEIGHT / fdf->y;
 	else

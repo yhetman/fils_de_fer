@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/03 15:10:32 by yhetman           #+#    #+#              #
-#    Updated: 2019/04/14 21:50:39 by yhetman          ###   ########.fr        #
+#    Updated: 2019/04/17 18:09:14 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,11 @@ LIBFT_FUNCTIONS = ft_putchar	ft_putendl		ft_putstr		\
 				ft_display		ft_strrev		ft_strnlen		\
 				ft_find_whitespaces ft_backn_gnl get_next_line	\
 				ft_put_uint_base	ft_put_uintmax_base			\
-				ft_put_uintmax		ft_putwchar	ft_putwstr 		\
-				ft_wstrlen			ft_wstrncpy	ft_wstrsub		\
-				ft_maxlen_base		ft_pow 		ft_strchri		\
-				ft_strjoin_free		ft_free_grid ft_charinstr 	\
-				ft_strclen	ft_nbrlen	ft_htoi		ft_printf	\
+				ft_put_uintmax		ft_putwchar		ft_putwstr	\
+				ft_wstrlen			ft_wstrncpy		ft_wstrsub	\
+				ft_maxlen_base		ft_pow 			ft_strchri	\
+				ft_strjoin_free		ft_free_grid	ft_charinstr\
+				ft_strclen			ft_htoi			ft_printf	\
 				ft_buffering	\
 				ft_coloring		\
 				ft_conversion 	\

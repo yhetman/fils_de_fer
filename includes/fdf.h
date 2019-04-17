@@ -27,9 +27,9 @@ typedef struct		s_coord
 
 typedef struct		s_rotation
 {
-	float			x;
-	float			y;
-	float			z;
+	double			x;
+	double			y;
+	double			z;
 }					t_rot;
 
 typedef struct		s_line
@@ -73,26 +73,30 @@ typedef struct		s_fdf
 	t_image			image;
 	t_line			**line;
 	t_color			**points;
-	float			x;
-	float			y;
 	t_coord			*coord;
+	t_palette		*palette;
 	t_rot			rot;
-	float			zoom;
-	float			height;
+	double			x;
+	double			y;
+	double			zoom;
+	double			height;
 	int				info;
 	int				music;
 	t_palette		*palette;
 }					t_fdf;
 
+
+int		define_hook(int keycode, t_fdf *fdf);
+int		exit_hook(int keycode, void *param);
 void	mlx_error(void);
 void	map_error(void);
 void	mal_error(void);
 void	arg_error(void);
 void	file_error(void);
-int		exit_hook(int keycode, void *param);
 int		is_valid(t_fdf **fdf, char *str);
 t_line 	**init_line(t_coord *c, char *line);
 t_image	*init_image(void *mlx, t_image *image);
 t_fdf	*init_fdf(t_line **l, t_coord *c);
-t_color	rotation(t_fdf *fdf, float x, float y, float z);
+t_color	counting_rotation(t_fdf *fdf, double x,
+		double y, double z);
 #endif

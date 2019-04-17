@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation.c                                         :+:      :+:    :+:   */
+/*   counting_rotation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 15:36:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 16:45:24 by yhetman          ###   ########.fr       */
+/*   Created: 2019/04/17 18:37:21 by yhetman           #+#    #+#             */
+/*   Updated: 2019/04/17 18:42:20 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define st_rot		fdf->rot
 
-t_color		rotation(t_fdf *fdf, float x, float y, float z)
+t_color		counting_rotation(t_fdf *fdf, double x, double y, double z)
 {	
 	t_color	point;
 
