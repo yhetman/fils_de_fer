@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/04 17:23:03 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:34:41 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int     exit_hook(int keycode, void *param)
+int	exit_hook(int keycode, void *param)
 {
 	t_fdf	*f;
 

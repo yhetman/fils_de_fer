@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/16 23:26:40 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:37:19 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_image		*init_image(void *mlx, t_image *image)
 	image->ptr = mlx_get_data_addr(image->image, &(image->bpp),
 		&(image->size), &(image->end));
 	image->bpp /= 8;
-	return(image);
+	return (image);
 }
 
 static void	display_menu(t_fdf *fdf)
@@ -46,7 +46,7 @@ static void	display_menu(t_fdf *fdf)
 	ft_memdel((void*)&image);
 }
 
-static	void mlx_manager(t_fdf **fdf)
+static void	mlx_manager(t_fdf **fdf)
 {
 	void	*mlx;
 	void	*win;
@@ -69,13 +69,13 @@ static	void mlx_manager(t_fdf **fdf)
 	mlx_loop((*fdf)->mlx);
 }
 
-int 		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_fdf	*fdf;
 
 	if (argc != 2)
 		arg_error();
-	if (is_valid(&fdf,  argv[1]))
+	if (is_valid(&fdf, argv[1]))
 		return (1);
 	//ft_music(); system("afplay -v &");
 	mlx_manager(&fdf);

@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/14 21:28:59 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:32:16 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	init_coord(t_fdf *fdf)
 		fdf->points[c->y] = (t_color *)malloc(sizeof(t_color) * fdf->x);
 		while (++c->x < fdf->x)
 		{
-			fdf->points[c->y][c->x] = rotation(fdf, fdf->zoom * (c->x - fdf->x / 2),
+			fdf->points[c->y][c->x] =
+				rotation(fdf, fdf->zoom * (c->x - fdf->x / 2),
 				fdf->zoom * (c->y - fdf->y / 2),
 				fdf->zoom * fdf->height * fdf->l[c->y][c->x].height);
 			fdf->points[c->y][c->x].r += WIN_WIDTH / 2;

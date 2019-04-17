@@ -87,8 +87,8 @@ typedef struct		s_fdf
 void	mal_error(void);
 void	arg_error(void);
 int		exit_hook(int keycode, void *param);
-int		is_valid(t_fdf **fdf);
-t_line 	**init_line(t_fdf *fdf, t_coord *c, char *line);
+int		is_valid(t_fdf **fdf, char *str);
+t_line 	**init_line(t_coord *c, char *line);
 t_image	*init_image(void *mlx, t_image *image);
 t_fdf	*init_fdf(t_line **l, t_coord *c);
 t_color	rotation(t_fdf *fdf, float x, float y, float z);

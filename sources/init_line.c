@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 00:37:09 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:35:17 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 	return (line);
 }
 
-t_line			**init_line(t_fdf *fdf, t_coord *c, char *map)
+t_line			**init_line(t_coord *c, char *map)
 {
 	int			i;
 	int			fd;
@@ -61,7 +61,7 @@ t_line			**init_line(t_fdf *fdf, t_coord *c, char *map)
 	i = 0;
 	str = NULL;
 	if (!(grid = (char ***)malloc(sizeof(char **) * (c->y + 1))))
-		 mal_error();
+		mal_error();
 	grid[c->y] = 0;
 	fd = open(map, O_RDONLY);
 	while (get_next_line(fd, &str))
@@ -71,7 +71,7 @@ t_line			**init_line(t_fdf *fdf, t_coord *c, char *map)
 	}
 	close(fd);
 	if (!(line = (t_line **)malloc(sizeof(t_line *) * c->y)))
-		 mal_error();
+		mal_error();
 	line = fill_the_line(grid, c, line);
 	ft_free_grid(grid);
 	return (line);

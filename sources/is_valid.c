@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 00:14:55 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:31:06 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int			save_ordinat(char *str)
+static int	save_ordinat(char *str)
 {
 	int		ordinat;
 	int		res;
@@ -21,7 +21,7 @@ static int			save_ordinat(char *str)
 
 	ordinat = -1;
 	fd = open(str, O_RDONLY);
-	while ((++ordinat > -1 && (res = get_next_line(fd, &line))) > 0 )
+	while ((++ordinat > -1 && (res = get_next_line(fd, &line))) > 0)
 		ft_strdel(&line);
 	if (res < 0)
 		return (-1);
@@ -29,7 +29,7 @@ static int			save_ordinat(char *str)
 	return (ordinat);
 }
 
-static int			save_absis(char *str)
+static int	save_absis(char *str)
 {
 	int		absis;
 	int		tmp;
@@ -39,13 +39,15 @@ static int			save_absis(char *str)
 
 	absis = 0;
 	fd = open(str, O_RDONLY);
-	while (get_next_line(fd, &line) && (tmp = 0) && (i = -1))
+	while (get_next_line(fd, &line))
 	{
+		i = -1;
+		tmp = 0;
 		while (line[++i])
 			if (line[i] != ' ' && (line[i + 1] == ' ' || !line[i + 1]))
 				tmp++;
 		ft_strdel(&line);
-		if (!absis && absis != tmp)
+		if (absis != tmp && !absis)
 			absis = tmp;
 		else if (absis != tmp || !absis)
 			return (-1);
@@ -54,17 +56,17 @@ static int			save_absis(char *str)
 	return (absis);
 }
 
-int	is_valid(t_fdf **fdf, char *map)
+int			is_valid(t_fdf **fdf, char *map)
 {
 	t_coord	*c;
 
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
 	ft_bzero(c, sizeof(t_coord));
-	if ((c->x = save_absis(map) <= 0)
+	if ((c->x = save_absis(map)) <= 0)
 		return (ft_printf("%{red}Error: Invalid map.%{eoc}\n"));
-	if ((c->y = save_ordinat(map) < 0)
+	if ((c->y = save_ordinat(map)) < 0)
 		return (ft_printf("%{red}Error: Invalid name of file.%{eoc}\n"));
-	*fdf = init_fdf(init_line(*fdf, c, map), c);
+	*fdf = init_fdf(init_line(c, map), c);
 	return (0);
-}29
+}
