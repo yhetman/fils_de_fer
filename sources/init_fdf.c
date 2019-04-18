@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fdf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 18:44:06 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/18 02:20:05 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	init_points(t_fdf *fdf)
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
 	c->y = -1;
-	fdf->points = (t_color **)malloc(sizeof(t_color *) * fdf->y);
-	while ((c->x = -1) && ++c->y < fdf->y)
+	fdf->points = (t_color **)malloc(sizeof(t_color *) * fdf->cor->y);
+	while ((c->x = -1) && ++c->y < fdf->cor->y)
 	{
-		fdf->points[c->y] = (t_color *)malloc(sizeof(t_color) * fdf->x);
-		while (++c->x < fdf->x)
+		fdf->points[c->y] = (t_color *)malloc(sizeof(t_color) * fdf->cor->x);
+		while (++c->x < fdf->cor->x)
 		{
 			fdf->points[c->y][c->x] = 
-				counting_rotation(fdf, fdf->zoom * (c->x - fdf->x / 2),
-				fdf->zoom * (c->y - fdf->y / 2),
-				fdf->zoom * fdf->height * fdf->line[c->y][c->x].height);
+				counting_rotation(fdf, fdf->z * (c->x - fdf->cor->x / 2),
+				fdf->z * (c->y - fdf->cor->y / 2),
+				fdf->z * fdf->h * fdf->line[c->y][c->x].height);
 			fdf->points[c->y][c->x].r += WIN_WIDTH / 2;
 			fdf->points[c->y][c->x].g += WIN_HEIGHT / 2;
 			if (fdf->line[c->y][c->x].color)
@@ -50,23 +50,23 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	fdf->line = line;
 	fdf->x = c->x;
 	fdf->y = c->y;
-	fdf->height = 0.1;
+	fdf->h = 0.1;
 	fdf->info = 1;
 	//fdf->rot.x = 0;
 	//fdf->rot.y = 0;
 	//fdf->rot.z = 0;
 	ft_bzero(&(fdf->rot), sizeof(t_rot));
 	if (c->y >= c->x)
-		fdf->zoom = WIN_HEIGHT / fdf->y;
+		fdf->z = WIN_HEIGHT / fdf->y;
 	else
-		fdf->zoom = WIN_WIDTH / fdf->x;
+		fdf->z = WIN_WIDTH / fdf->x;
 	if (!(fdf->mlx = mlx_init()))
 		mlx_error();
 	if (!(fdf->win = mlx_new_window(fdf->mlx,
 		WIN_WIDTH, WIN_HEIGHT, "fils_de_fer")))
 		mlx_error();
 	init_image(fdf->mlx, &fdf->image);
-	ft_bzero(fdf->coord, sizeof(t_coord));
+	ft_bzero(fdf->cor, sizeof(t_coord));
 	init_points(fdf);
 	return (fdf);
 }
