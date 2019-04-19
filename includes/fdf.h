@@ -16,13 +16,14 @@ void	mal_error(void);
 void	arg_error(void);
 void	file_error(void);
 
+void	draw(t_fdf *f, t_algo first, t_algo second);
 void	using_algo(t_fdf *f, int x, int y, t_color **p);
 
-void	rotetion(int keycode, t_fdf *fdf);
+void	rotation(int keycode, t_fdf *fdf);
 void	movement(int keycode, t_fdf *fdf);
 void	zoom(int keycode, t_fdf *fdf);
 void	change_height(int keycode, t_fdf *fdf);
-void	refreshing(int keycode, t_fdf *fdf);
+void	refreshing(t_fdf *fdf);
 
 int		define_hook(int keycode, t_fdf *fdf);
 int		exit_hook(int keycode, void *param);

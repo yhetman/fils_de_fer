@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/18 03:45:55 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/19 16:53:12 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	reset_points(t_fdf *fdf)
 	{
 		while (++c->x < fdf->cor->x)
 		{
-			fdf->points[c->y][c->x] = counting_rotations(fdf,
+			fdf->points[c->y][c->x] = counting_rotation(fdf,
 			fdf->z * (c->x - fdf->cor->x / 2),
 			fdf->z * (c->y - fdf->cor->y / 2),
 			fdf->z * fdf->h * fdf->line[c->y][c->x].height);
@@ -45,7 +45,7 @@ static void	creating(t_fdf *fdf)
 	if (fdf->z < 0)
 		fdf->z = 0;
 	reset_points(fdf);
-	using_algo(fdf, fdf->cor->x, fdf->cor->y, fdf->dots);
+	using_algo(fdf, fdf->cor->x, fdf->cor->y, fdf->points);
 }
 
 int	define_hook(int c, t_fdf *fdf)
@@ -63,7 +63,7 @@ int	define_hook(int c, t_fdf *fdf)
 	else if (c == 6 || c == 7)
 		zoom(c, fdf);
 	else if (c == 51)
-		refreshing(fdf);
+		refreshing( fdf);
 	mlx_clear_window(fdf->mlx, fdf->win);
 	ft_bzero((void *)fdf->image.ptr, WIN_WIDTH * WIN_HEIGHT * 4);
 	creating(fdf);

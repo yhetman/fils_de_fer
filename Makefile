@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/14 01:12:39 by yhetman           #+#    #+#              #
-#    Updated: 2019/04/14 21:57:48 by yhetman          ###   ########.fr        #
+#    Updated: 2019/04/19 16:47:53 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ FLAGS_PLUS	= -L ./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 endif
 
 FILES		=	main init_fdf init_line is_valid \
-				rotation hooks error
+				counting_rotation hooks error draw \
+				key_handling using_algo
 
 SRC			=	$(addprefix sources/, $(addsuffix .c, $(FILES)))
 OBJ			=	$(addprefix obj/, $(addsuffix .o, $(FILES)))
