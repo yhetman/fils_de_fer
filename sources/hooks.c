@@ -48,7 +48,17 @@ static void	creating(t_fdf *fdf)
 	using_algo(fdf, fdf->cor->x, fdf->cor->y, fdf->points);
 }
 
-int	define_hook(int c, t_fdf *fdf)
+static int	exit_hook(int c, void *ptr)
+{
+	t_fdf	*f;
+
+	f = (t_fdf*)ptr;
+	if (c == 53)
+		exit(EXIT_SUCCESS);
+	return(0);
+}
+
+int		define_hook(int c, t_fdf *fdf)
 {
 	if (c == 53)
 		exit_hook(53, fdf);
@@ -67,15 +77,5 @@ int	define_hook(int c, t_fdf *fdf)
 	mlx_clear_window(fdf->mlx, fdf->win);
 	ft_bzero((void *)fdf->image.ptr, WIN_WIDTH * WIN_HEIGHT * 4);
 	creating(fdf);
-	return (0);
-}
-
-int	exit_hook(int c, void *param)
-{
-	t_fdf	*f;
-
-	f = (t_fdf*)param;
-	if (c == 53)
-		exit(EXIT_SUCCESS);
 	return (0);
 }
