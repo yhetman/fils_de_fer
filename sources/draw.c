@@ -6,12 +6,36 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/23 18:33:33 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/23 18:37:36 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+static double	gradient(int first, int second, double percent)
+{
+	int		r;
+	int		g;
+	int		b;
+
+	if (first - second == 0)
+		return (first);
+	r = (first >> 16) + ((second >> 16) - (first >> 16)) * percent;
+	g = (first >> 8 & 0xFF) +
+		((second >> 8 & 0xFF) - (first >> 8 & 0xFF)) * percent;
+	b = (first & 0xFF) + ((second & 0xFF) - (first & 0xFF)) * percent;
+	return (ft_rgb_to_int(r, g, b));
+}
+
+static double	persentage(int val, int first, int second)
+{
+	if (val == first)
+		return (0.0);
+	else if (val == second)
+		return (1.0);
+	else
+		return ((double)(val - first) / (second - first));
+}
 
 static void		draw_absis(t_fdf *f, t_algo one, t_algo two,
 					t_line dot)
