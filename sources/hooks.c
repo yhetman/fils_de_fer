@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/19 16:53:12 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/23 17:48:23 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	creating(t_fdf *fdf)
 	using_algo(fdf, fdf->cor->x, fdf->cor->y, fdf->points);
 }
 
-static int	exit_hook(int c, void *ptr)
+int			exit_hook(int c, void *ptr)
 {
 	t_fdf	*f;
 
@@ -58,7 +58,7 @@ static int	exit_hook(int c, void *ptr)
 	return(0);
 }
 
-int		define_hook(int c, t_fdf *fdf)
+int			define_hook(int c, t_fdf *fdf)
 {
 	if (c == 53)
 		exit_hook(53, fdf);

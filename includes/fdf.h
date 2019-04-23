@@ -21,12 +21,12 @@ void	using_algo(t_fdf *f, int x, int y, t_color **p);
 
 void	rotation(int keycode, t_fdf *fdf);
 void	movement(int keycode, t_fdf *fdf);
-void	zoom(int keycode, t_fdf *fdf);
 void	change_height(int keycode, t_fdf *fdf);
+void	zoom(int keycode, t_fdf *fdf);
 void	refreshing(t_fdf *fdf);
 
+int		exit_hook(int keycode, void *ptr);
 int		define_hook(int keycode, t_fdf *fdf);
-int		exit_hook(int keycode, void *param);
 
 int		is_valid(t_fdf **fdf, char *str);
 

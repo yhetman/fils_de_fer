@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:37:58 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/19 16:55:42 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/23 18:09:20 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static t_algo	init_algo(int x, int y, int col)
 {
 	t_algo	a;
 
-	a.c.x = x;
-	a.c.y = y;
-	a.dec = col;
+	a.c->x = x;
+	a.c->y = y;
+	a.shade = col;
 	return (a);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/19 16:46:36 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/23 18:08:10 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ typedef struct		s_palette
 
 typedef struct		s_bres
 {
-	t_coord			c;
-	t_coord			*dot_coor;
+	t_coord			*c;
+	t_coord			*d;
+	int				shade;
 	int				dec;
-	int				d;
-	t_coord			dots; //x = dot1, y = dot2;
+	t_coord			*dots; //x = dot1, y = dot2;
 }					t_algo;
 
 typedef struct		s_fdf
@@ -75,7 +75,7 @@ typedef struct		s_fdf
 	double			z;
 	double			h;
 	int				info;
-	//int				music;
+	int				check;
 }					t_fdf;
 
 #endif
