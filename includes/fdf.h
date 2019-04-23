@@ -17,6 +17,7 @@ void	arg_error(void);
 void	file_error(void);
 
 void	draw(t_fdf *f, t_algo first, t_algo second);
+
 void	using_algo(t_fdf *f, int x, int y, t_color **p);
 
 void	rotation(int keycode, t_fdf *fdf);
