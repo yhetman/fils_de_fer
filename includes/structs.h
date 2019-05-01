@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/01 19:15:31 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/01 20:47:42 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct		s_fdf
 	t_coord			*cor;
 	t_palette		*palette;
 	t_rot			rot;
+	char			*name;
 	double			x;
 	double			y;
 	double			z;

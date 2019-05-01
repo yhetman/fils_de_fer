@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/19 16:45:49 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/01 20:42:41 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_image		*init_image(void *mlx, t_image *image)
 	return (image);
 }
 
-static void	display_menu(t_fdf *fdf, char *name)
+void	display_menu(t_fdf *fdf, char *name)
 {
 	t_image	*image;
 	int		width;
@@ -48,6 +48,7 @@ static void	display_menu(t_fdf *fdf, char *name)
 
 static void	mlx_manager(t_fdf *fdf, char *name)
 {
+	fdf->name = ft_strcpy(fdf->name, name);
 	init_image(fdf->mlx, &fdf->image);
 	display_menu(fdf, name);
 	mlx_key_hook(fdf->win, exit_hook, fdf);

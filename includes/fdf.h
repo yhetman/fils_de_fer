@@ -16,6 +16,8 @@ void	mal_error(void);
 void	arg_error(void);
 void	file_error(void);
 
+void	display_menu(t_fdf *fdf, char *name);
+
 void	draw(t_fdf *f, t_algo first, t_algo second);
 
 void	using_algo(t_fdf *f, int x, int y, t_color **p);
