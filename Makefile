@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/14 01:12:39 by yhetman           #+#    #+#              #
-#    Updated: 2019/04/19 16:47:53 by yhetman          ###   ########.fr        #
+#    Updated: 2019/05/01 19:09:56 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,12 @@ SRC			=	$(addprefix sources/, $(addsuffix .c, $(FILES)))
 OBJ			=	$(addprefix obj/, $(addsuffix .o, $(FILES)))
 
 obj/%.o: sources/%.c
-	@$(CC) $(FLAGS) -c -o $@ $< $(HEADER)
+	$(CC) $(FLAGS) -c -o $@ $< $(HEADER)
 
 all: $(NAME)
 
 $(NAME): libft/libft.a mlx $(OBJ)
-	@#make -C libft
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I /usr/local/include -L /usr/local/lib \
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I /usr/local/include -L /usr/local/lib \
 	-lmlx libft/libft.a -framework OpenGL -framework AppKit
 
 libft/libft.a:
@@ -45,10 +44,10 @@ libft/libft.a:
 
 ifeq ($(OS), Linux)
 mlx:
-	@make -C minilibx
+	make -C minilibx
 else
 mlx:
-	@make -C minilibx_macos
+	make -C minilibx_macos
 endif
 
 
@@ -58,16 +57,16 @@ clean: clean_mlx
 
 ifeq ($(OS), Linux)
 clean_mlx:
-	@make -C minilibx clean
+	make -C minilibx clean
 else
 clean_mlx:
-	@make -C minilibx_macos clean
+	make -C minilibx_macos clean
 endif
 
 fclean: clean_mlx
 	make -C libft fclean
-	@rm -rf $(OBJ)
-	@rm -rf $(NAME)
+	rm -rf $(OBJ)
+	rm -rf $(NAME)
 
 
 re: fclean all

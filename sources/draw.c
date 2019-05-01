@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/23 18:37:36 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/01 20:03:56 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,35 @@ static double	persentage(int val, int first, int second)
 		return ((double)(val - first) / (second - first));
 }
 
-static void		draw_absis(t_fdf *f, t_algo one, t_algo two,
-					t_line dot)
+static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
+{
+	int i;
+
+	i = 0;
+	while (i++ <= one.d->y)
+	{
+		if (dot.height >= 0 && dot.color >= 0 &&
+			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+			* f->image.bpp) = gradient(one.shade, two.shade,
+			persentage(dot.height, one.c->x, two.c->x));
+		dot.color += two.c->y >= one.c->y ? 1 : -1;
+		if (one.dec > 0)
+		{
+			one.dec += two.dots->y;
+			dot.height += two.c->x >= one.c->x ? 1 : -1;
+		}
+		else
+			one.dec += one.dots->x;
+		if (dot.height >= 0 && dot.color >= 0 &&
+			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+			* f->image.bpp) = gradient(one.shade, two.shade,
+			persentage(dot.height, one.c->x, two.c->x));	
+	}
+}
+
+static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 {
 	int i;
 
@@ -46,7 +73,7 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two,
 	while (i++ <= one.d->x)
 	{
 		if (dot.height >= 0 && dot.color >= 0 &&
-			dot.height < WIDTH && dot.color < WIN_HEIGHT)
+			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
 			* f->image.bpp) = gradient(one.shade, two.shade,
 			persentage(dot.height, one.c->x, two.c->x));
@@ -82,7 +109,7 @@ void			draw(t_fdf *f, t_algo first, t_algo second)
 		first.dots->x = 2 * first.d->x;
 		first.dots->y = 2 * (first.d->x - first.d->y);
 		f->check = 10;
-		//draw_ordinat(f, first, second, coor);
+		draw_ordinat(f, first, second, coor);
 	}
 	return ;
 }

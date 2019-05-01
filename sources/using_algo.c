@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:37:58 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/23 18:09:20 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/01 20:06:20 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void		using_algo(t_fdf *f, int x, int y, t_color **p)
 		while ((++i->x + 1)< x)
 		{
 			drawing(f, i->x, i->y, p);
-		draw(f, init_algo(f->x + p[i->y][i->x].r, f->y
-			+ p[i->y][i->x].g, p[i->y][i->x].dec),
-			init_algo(f->x + p[i->y + 1][i->x].r, f->y
-			+ p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
+			draw(f, init_algo(f->x + p[i->y][i->x].r, f->y
+				+ p[i->y][i->x].g, p[i->y][i->x].dec),
+				init_algo(f->x + p[i->y + 1][i->x].r, f->y
+				+ p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
 		}
 		draw(f, init_algo(f->x + p[i->y][i->x].r, f->y
 			+ p[i->y][i->x].g, p[i->y][i->x].dec),

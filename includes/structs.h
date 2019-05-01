@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/23 18:08:10 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/01 19:15:31 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_palette
 	t_color			*c_5;
 }					t_palette;
 
-typedef struct		s_bres
+typedef struct		s_algo
 {
 	t_coord			*c;
 	t_coord			*d;
