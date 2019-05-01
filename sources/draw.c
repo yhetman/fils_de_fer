@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/01 20:03:56 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/01 21:05:44 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ void			draw(t_fdf *f, t_algo first, t_algo second)
 		first.dec = 2 * first.d->x - first.d->y;
 		first.dots->x = 2 * first.d->x;
 		first.dots->y = 2 * (first.d->x - first.d->y);
-		f->check = 10;
 		draw_ordinat(f, first, second, coor);
 	}
-	return ;
 }
