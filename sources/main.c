@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/02 17:43:43 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/02 20:04:30 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void		init_image(void *mlx, t_image *image)
 {
 	image->image = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
-	image->ptr = mlx_get_data_addr(image->image, &(image->bpp),
+	image->ptr = mlx_get_data_addr(image->image, &(image->bits),
 		&(image->size), &(image->end));
-	image->bpp /= 8;
+	image->bits /= 8;
 }
 
 void		display_menu(t_fdf *fdf, char *name)

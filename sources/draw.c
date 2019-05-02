@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/01 21:05:44 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/02 20:04:59 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bpp) = gradient(one.shade, two.shade,
+			* f->image.bits) = gradient(one.shade, two.shade,
 			persentage(dot.height, one.c->x, two.c->x));
 		dot.color += two.c->y >= one.c->y ? 1 : -1;
 		if (one.dec > 0)
@@ -60,7 +60,7 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bpp) = gradient(one.shade, two.shade,
+			* f->image.bits) = gradient(one.shade, two.shade,
 			persentage(dot.height, one.c->x, two.c->x));	
 	}
 }
@@ -75,7 +75,7 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bpp) = gradient(one.shade, two.shade,
+			* f->image.bits) = gradient(one.shade, two.shade,
 			persentage(dot.height, one.c->x, two.c->x));
 		dot.height += two.c->x >= one.c->x ? 1 : -1;
 		if (one.dec > 0)

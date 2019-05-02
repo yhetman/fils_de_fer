@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/02 17:32:37 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/02 20:03:09 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_image
 {
 	void			*image;
 	char			*ptr;
-	int				bpp;
+	int				bits;
 	int				size;
 	int				end;
 }					t_image;
