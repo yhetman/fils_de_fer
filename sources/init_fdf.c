@@ -48,8 +48,7 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 		mal_error();
 	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx,
-		WIN_WIDTH, WIN_HEIGHT, "fils_de_fer");
+	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "fils_de_fer");
 	init_image(fdf->mlx, &fdf->image);
 	ft_bzero(fdf->cor, sizeof(t_coord));
 	fdf->line = line;
