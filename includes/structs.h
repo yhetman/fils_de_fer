@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/01 21:04:14 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/02 17:32:37 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,6 @@ typedef struct		s_image
 	int				end;
 }					t_image;
 
-/*
-typedef struct		s_palette
-{
-	t_color			*c_1;
-	t_color			*c_2;
-	t_color			*c_3;
-	t_color			*c_4;
-	t_color			*c_5;
-}					t_palette;
-*/
-
 typedef struct		s_algo
 {
 	t_coord			*dots; //x = dot1, y = dot2;
@@ -79,5 +68,16 @@ typedef struct		s_fdf
 	double			h;
 	int				info;
 }					t_fdf;
+
+/*
+typedef struct		s_palette
+{
+	t_color			*c_1;
+	t_color			*c_2;
+	t_color			*c_3;
+	t_color			*c_4;
+	t_color			*c_5;
+}					t_palette;
+*/
 
 #endif

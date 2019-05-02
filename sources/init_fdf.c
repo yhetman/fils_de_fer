@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fdf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/18 02:20:05 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/02 18:17:58 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,23 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 
 	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 		mal_error();
+	fdf->mlx = mlx_init();
+	fdf->win = mlx_new_window(fdf->mlx,
+		WIN_WIDTH, WIN_HEIGHT, "fils_de_fer");
+	init_image(fdf->mlx, &fdf->image);
+	ft_bzero(fdf->cor, sizeof(t_coord));
 	fdf->line = line;
 	fdf->x = c->x;
 	fdf->y = c->y;
 	fdf->h = 0.1;
 	fdf->info = 1;
-	//fdf->rot.x = 0;
-	//fdf->rot.y = 0;
-	//fdf->rot.z = 0;
-	ft_bzero(&(fdf->rot), sizeof(t_rot));
+	fdf->rot.x = 0;
+	fdf->rot.y = 0;
+	fdf->rot.z = 0;
 	if (c->y >= c->x)
 		fdf->z = WIN_HEIGHT / fdf->y;
 	else
 		fdf->z = WIN_WIDTH / fdf->x;
-	if (!(fdf->mlx = mlx_init()))
-		mlx_error();
-	if (!(fdf->win = mlx_new_window(fdf->mlx,
-		WIN_WIDTH, WIN_HEIGHT, "fils_de_fer")))
-		mlx_error();
-	init_image(fdf->mlx, &fdf->image);
-	ft_bzero(fdf->cor, sizeof(t_coord));
 	init_points(fdf);
 	return (fdf);
 }
