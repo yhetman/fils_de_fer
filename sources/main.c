@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/02 20:04:30 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/03 17:37:43 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void		init_image(void *mlx, t_image *image)
 
 void		display_menu(t_fdf *fdf, char *name)
 {
-	//init_image(mlx_new_image(fdf->mlx, 300, WIN_HEIGHT), &fdf->image);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.ptr, 0, 0);
 	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0xFFFFFF, "Fils_de_Fer Controls");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0xFFFFFF, "MAP:");
 	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0xFFFFFF, name);
@@ -36,11 +34,11 @@ void		display_menu(t_fdf *fdf, char *name)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 180, 0xFFFFFF, "TO EXIT: ESC");
 	mlx_string_put(fdf->mlx, fdf->win, 10, WIN_HEIGHT - 25, 0xFFFFFF,
 			"AUTHOR: Yuliia HETMAN");
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.ptr, 0, 0);
 }
 
 static void	mlx_manager(t_fdf *fdf, char *name)
 {
-	init_image(fdf->mlx, &fdf->image);
 	ft_strcpy(fdf->name, name);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.image, 0, 0);
 	display_menu(fdf, name);
