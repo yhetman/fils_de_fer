@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 16:11:37 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/04 20:49:12 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 	in->y = -1;
 	while (++in->y < c->y)
 	{
-		in->x = -1;
 		line[in->y] = (t_line *)malloc(sizeof(t_line) * c->x);
+		in->x = -1;
 		while (++in->x < c->x)
 		{
 			line[in->y][in->x].height = ft_atoi(str[in->y][in->x]);
@@ -51,29 +51,27 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 	return (line);
 }
 
-t_line			**init_line(t_coord *c, char *map)
+t_line			**init_line(t_coord *c, char *map, char *row)
 {
 	int			i;
 	int			fd;
-	char		*str;
 	t_line		**line;
 	char		***grid;
 
 	i = 0;
-	str = NULL;
 	if (!(grid = (char ***)malloc(sizeof(char **) * (c->y + 1))))
 		mal_error();
 	grid[c->y] = 0;
 	fd = open(map, O_RDONLY);
-	while (get_next_line(fd, &str))
+	while (get_next_line(fd, &row))
 	{
-		grid[i++] = ft_strsplit(str, ' ');
-		ft_strdel(&str);
+		grid[i++] = ft_strsplit(row, ' ');
+		ft_strdel(&row);
 	}
 	close(fd);
 	if (!(line = (t_line **)malloc(sizeof(t_line *) * c->y)))
 		mal_error();
-	line = fill_the_line(grid, c, line);
+	fill_the_line(grid, c, line);
 	ft_free_grid(grid);
 	return (line);
 }

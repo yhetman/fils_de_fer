@@ -6,39 +6,42 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/03 17:34:22 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/04 20:42:48 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int	save_ordinat(char *str)
+static int	save_ordinat(char *map)
 {
-	int		ordinat;
-	int		res;
 	int		fd;
+	int		res;
+	int		ordinat;
 	char	*line;
 
-	ordinat = -1;
-	fd = open(str, O_RDONLY);
-	while ((++ordinat > -1 && (res = get_next_line(fd, &line))) > 0)
+	ordinat = 0;
+	fd = open(map, O_RDONLY);
+	while ((res = get_next_line(fd, &line)) > 0)
+	{
+		ordinat++;
 		ft_strdel(&line);
+	}
 	if (res < 0)
 		return (-1);
 	close(fd);
 	return (ordinat);
 }
 
-static int	save_absis(char *str)
+static int	save_absis(char *map)
 {
-	int		absis;
-	int		tmp;
 	int		i;
 	int		fd;
+	int		tmp;
+	int		absis;
 	char	*line;
 
 	absis = 0;
-	fd = open(str, O_RDONLY);
+	fd = open(map, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
 		i = -1;
@@ -47,7 +50,7 @@ static int	save_absis(char *str)
 			if (line[i] != ' ' && (line[i + 1] == ' ' || !line[i + 1]))
 				tmp++;
 		ft_strdel(&line);
-		if (absis != tmp && !absis)
+		if (!absis && absis != tmp)
 			absis = tmp;
 		else if (absis != tmp || !absis)
 			return (-1);
@@ -59,14 +62,16 @@ static int	save_absis(char *str)
 int			is_valid(t_fdf **fdf, char *map)
 {
 	t_coord	*c;
+	char	*line;
 
+	line = NULL;
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
-	ft_bzero(c, sizeof(t_coord));
-	if ((c->x = save_absis(map)) <= 0)
-		map_error();
+	//ft_bzero(c, sizeof(t_coord));
 	if ((c->y = save_ordinat(map)) < 0)
 		file_error();
-	*fdf = init_fdf(init_line(c, map), c);
+	if ((c->x = save_absis(map)) <= 0)
+		map_error();
+	*fdf = init_fdf(init_line(c, map, line), c);
 	return (0);
 }

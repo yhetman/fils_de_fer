@@ -1,4 +1,16 @@
-                                                                                                        #ifndef FDF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
+/*   Updated: 2019/05/04 20:34:27 by yhetman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FDF_H
 # define FDF_H
 
 #include "../libft/includes/libft.h"
@@ -32,7 +44,7 @@ int		define_hook(int keycode, t_fdf *fdf);
 
 int		is_valid(t_fdf **fdf, char *str);
 
-t_line 	**init_line(t_coord *c, char *line);
+t_line	**init_line(t_coord *c, char *map, char *line);
 
 t_fdf	*init_fdf(t_line **l, t_coord *c);
 
