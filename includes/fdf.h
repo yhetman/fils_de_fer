@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/04 20:34:27 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/05 18:14:47 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ t_line	**init_line(t_coord *c, char *map, char *line);
 
 t_fdf	*init_fdf(t_line **l, t_coord *c);
 
-t_color	counting_rotation(t_fdf *fdf, double x,
+t_color	counting_rotation(t_rot rot, double x,
 		double y, double z);
 #endif

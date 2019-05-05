@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/03 17:54:53 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/05 18:15:39 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_points(t_fdf *fdf)
 		while (++c->x < fdf->cor->x)
 		{
 			fdf->points[c->y][c->x] = 
-				counting_rotation(fdf, fdf->z * (c->x - fdf->cor->x / 2),
+				counting_rotation(fdf->rot, fdf->z * (c->x - fdf->cor->x / 2),
 				fdf->z * (c->y - fdf->cor->y / 2),
 				fdf->z * fdf->h * fdf->line[c->y][c->x].height);
 			fdf->points[c->y][c->x].r += WIN_WIDTH / 2;
@@ -50,15 +50,16 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "fils_de_fer");
 	init_image(fdf->mlx, &fdf->image);
-	ft_bzero(fdf->cor, sizeof(t_coord));
 	fdf->line = line;
-	fdf->x = c->x;
-	fdf->y = c->y;
+	fdf->cor->x = c->x;
+	fdf->cor->y = c->y;
 	fdf->h = 0.1;
 	fdf->info = 1;
 	fdf->rot.x = 0;
 	fdf->rot.y = 0;
 	fdf->rot.z = 0;
+	fdf->x = 0;
+	fdf->y = 0;
 	if (c->y >= c->x)
 		fdf->z = WIN_HEIGHT / fdf->y;
 	else

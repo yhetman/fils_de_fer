@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/01 20:48:53 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/05 18:14:43 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	reset_points(t_fdf *fdf)
 	{
 		while (++c->x < fdf->cor->x)
 		{
-			fdf->points[c->y][c->x] = counting_rotation(fdf,
+			fdf->points[c->y][c->x] = counting_rotation(fdf->rot,
 			fdf->z * (c->x - fdf->cor->x / 2),
 			fdf->z * (c->y - fdf->cor->y / 2),
 			fdf->z * fdf->h * fdf->line[c->y][c->x].height);
