@@ -6,13 +6,13 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/03 15:10:32 by yhetman           #+#    #+#              #
-#    Updated: 2019/04/17 18:09:14 by yhetman          ###   ########.fr        #
+#    Updated: 2019/05/06 20:55:36 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 
 LIBFT_FUNCTIONS = ft_putchar	ft_putendl		ft_putstr		\
 				ft_putnbr		ft_strclr 		ft_putnbr_fd	\

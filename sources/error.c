@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:06:45 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/17 16:57:16 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/06 19:40:18 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	mal_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	file_error(void)
+int		file_error(void)
 {
 	ft_printf("%{red}Error: Invalid name of file.%{eoc}\n");
-	exit(EXIT_FAILURE);
+	return (1);
 }
 
-void	map_error(void)
+int		map_error(void)
 {
 	ft_printf("%{red}Error: Invalid map.%{eoc}\n");
-	exit(EXIT_FAILURE);
+	return (1);
 }
 
 void	mlx_error(void)
@@ -36,9 +36,9 @@ void	mlx_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	arg_error(void)
+int		arg_error(void)
 {
 	ft_printf("%{red}ERROR:\t Wrong number of arguments.\n");
 	ft_printf("%{blue}USAGE:\t ./fdf <map_filename>%{eoc}\n");
-	exit(EXIT_FAILURE);
+	return (1);
 }

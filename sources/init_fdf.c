@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/05 18:15:39 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/06 21:05:19 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 
 	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 		mal_error();
+	ft_bzero(fdf, sizeof(t_fdf));
+	fdf->cor = (t_coord *)malloc(sizeof(t_coord));
+	ft_bzero(fdf->cor, sizeof(t_coord));
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "fils_de_fer");
 	init_image(fdf->mlx, &fdf->image);
@@ -61,9 +64,9 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	fdf->x = 0;
 	fdf->y = 0;
 	if (c->y >= c->x)
-		fdf->z = WIN_HEIGHT / fdf->y;
+		fdf->z = WIN_HEIGHT / fdf->cor->y;
 	else
-		fdf->z = WIN_WIDTH / fdf->x;
+		fdf->z = WIN_WIDTH / fdf->cor->x;
 	init_points(fdf);
 	return (fdf);
 }

@@ -6,7 +6,7 @@
 /*   By: yhetman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 15:01:35 by yhetman           #+#    #+#             */
-/*   Updated: 2018/10/24 17:41:34 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/06 21:15:20 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ char	*ft_strcpy(char *dest, const char *src)
 	size_t	j;
 
 	j = -1;
-	while (src[++j] != '\0')
+	if (dest && src)
+	{
+		while (src[++j] != '\0')
+			dest[j] = src[j];
 		dest[j] = src[j];
-	dest[j] = src[j];
+	}
 	return (dest);
 }

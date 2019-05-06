@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/05 17:34:12 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/06 20:21:47 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_line			**init_line(t_coord *c, char *map, char *row)
 
 	i = 0;
 	if (!(grid = (char ***)malloc(sizeof(char **) * (c->y + 1))))
-		mal_error();
+		return (0);
 	grid[c->y] = 0;
 	fd = open(map, O_RDONLY);
 	while (get_next_line(fd, &row))
@@ -70,7 +70,7 @@ t_line			**init_line(t_coord *c, char *map, char *row)
 	}
 	close(fd);
 	if (!(line = (t_line **)malloc(sizeof(t_line *) * c->y)))
-		mal_error();
+		return (0);
 	fill_the_line(grid, c, line);
 	ft_free_grid(grid);
 	return (line);

@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/05 18:14:47 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/06 19:40:33 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # define WIN_WIDTH  1000
 
 void	mlx_error(void);
-void	map_error(void);
+int		map_error(void);
 void	mal_error(void);
-void	arg_error(void);
-void	file_error(void);
+int		arg_error(void);
+int		file_error(void);
 
 void	display_menu(t_fdf *fdf, char *name);
 void	init_image(void *mlx, t_image *image);

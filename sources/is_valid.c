@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/04 20:42:48 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/06 19:41:46 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int			is_valid(t_fdf **fdf, char *map)
 	line = NULL;
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
-	//ft_bzero(c, sizeof(t_coord));
+	ft_bzero(c, sizeof(t_coord));
 	if ((c->y = save_ordinat(map)) < 0)
-		file_error();
+		return (file_error());
 	if ((c->x = save_absis(map)) <= 0)
-		map_error();
+		return (map_error());
 	*fdf = init_fdf(init_line(c, map, line), c);
 	return (0);
 }

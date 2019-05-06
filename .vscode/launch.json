@@ -8,10 +8,10 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/yhetman/Desktop/fils_de_fer/fdf",
-			"args": [],
+			"program": "${workspaceFolder}/fdf",
+			"args": ["${workspaceFolder}/test_maps/42.fdf"],
 			"stopAtEntry": false,
-			"cwd": "/Users/yhetman/Desktop/fils_de_fer/fdf",
+			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": true,
 			"MIMode": "lldb"
