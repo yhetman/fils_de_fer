@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/07 10:20:02 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/07 16:29:47 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void		init_image(void *mlx, t_image *image)
 
 void		display_menu(t_fdf *fdf, char *name)
 {
-	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0xFFFFFF, "Fils_de_Fer Controls");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0xFFFFFF, "MAP:");
-	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0xFFFFFF, name);
-	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0xFFFFFF,
+	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0x6495ED, "Fils_de_Fer Controls");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0x87CEEB, "MAP:");
+	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0x87CEEB, name);
+	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0x87CEEB,
 			"TO ROTATE USE: ");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0xFFFFFF,
+	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0x87CEEB,
 			"TO ZOOM: ");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 150, 0xFFFFFF,
+	mlx_string_put(fdf->mlx, fdf->win, 10, 150, 0x87CEEB,
 			"TO CHANGE HEIGHT: ");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 180, 0xFFFFFF, "TO EXIT: ESC");
-	mlx_string_put(fdf->mlx, fdf->win, 10, WIN_HEIGHT - 25, 0xFFFFFF,
+	mlx_string_put(fdf->mlx, fdf->win, 10, 180, 0x87CEEB, "TO EXIT: ESC");
+	mlx_string_put(fdf->mlx, fdf->win, 10, WIN_HEIGHT - 25, 0xB0E0E6,
 			"AUTHOR: Yuliia HETMAN");
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.ptr, 0, 0);
 }
