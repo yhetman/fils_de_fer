@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:37:58 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/01 21:05:07 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/07 10:26:05 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ static t_algo	init_algo(int x, int y, int col)
 {
 	t_algo	a;
 
+	a.dots = (t_coord*)malloc(sizeof(t_coord));
+	a.c = (t_coord*)malloc(sizeof(t_coord));
+	a.d = (t_coord*)malloc(sizeof(t_coord));
 	ft_bzero(a.c, sizeof(t_coord));
+	ft_bzero(a.d, sizeof(t_coord));
+	ft_bzero(a.dots, sizeof(t_coord));
 	a.c->x = x;
 	a.c->y = y;
 	a.shade = col;
-	ft_bzero(a.d, sizeof(t_coord));
-	ft_bzero(a.dots, sizeof(t_coord));
 	return (a);
 }
 

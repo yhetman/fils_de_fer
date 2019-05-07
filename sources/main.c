@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/06 19:38:16 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/07 10:20:02 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int			main(int argc, char **argv)
 	if (is_valid(&fdf, argv[1]))
 		return (1);
 	mlx_manager(fdf, argv[1]);
-	//mlx_hook(fdf->win, 2, 0, define_hook, fdf);
-	//mlx_hook(fdf->win, 17, 0, exit_hook, (void*)0);
+	mlx_hook(fdf->win, 2, 0, define_hook, fdf);
+	mlx_hook(fdf->win, 17, 0, exit_hook, (void*)0);
 	mlx_loop(fdf->mlx);
 	return (0);
 }
