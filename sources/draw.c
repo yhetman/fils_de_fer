@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/07 17:07:25 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/09 18:39:55 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static double	persentage(int val, int first, int second)
 	else if (val == second)
 		return (1.0);
 	else
-		return ((double)((val - first) / (second - first)));
+		return ((double)(val - first) / (second - first));
 }
 
 static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
@@ -57,11 +57,11 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		}
 		else
 			one.dec += one.dots->x;
-		if (dot.height >= 0 && dot.color >= 0 &&
-			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->y, two.c->y));	
+		//if (dot.height >= 0 && dot.color >= 0 &&
+		//	dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+		//	*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+		//	* f->image.bits) = gradient(one.shade, two.shade,
+		//	persentage(dot.height, one.c->y, two.c->y));	
 	}
 }
 
