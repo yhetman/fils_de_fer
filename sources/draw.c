@@ -6,11 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/09 18:39:55 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/13 20:15:04 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+#define AB(c)	abs(c)
 
 static double	gradient(int first, int second, double percent)
 {
@@ -20,10 +22,12 @@ static double	gradient(int first, int second, double percent)
 
 	if (first - second == 0)
 		return (first);
-	r = (first >> 16) + ((second >> 16) - (first >> 16)) * percent;
-	g = (first >> 8 & 0x80) +
-		((second >> 8 & 0x80) - (first >> 8 & 0x80)) * percent;
-	b = (first & 0x80) + ((second & 0x80) - (first & 0x80)) * percent;
+	r = (first >> 16) + ((second >> 16)
+		- (first >> 16)) * percent;
+	g = (first >> 8 & 0x80) + ((second >> 8 & 0x80)
+		- (first >> 8 & 0x80)) * percent;
+	b = (first & 0x80) + ((second & 0x80)
+		- (first & 0x80)) * percent;
 	return (ft_rgb_to_int(r, g, b));
 }
 
@@ -35,6 +39,35 @@ static double	persentage(int val, int first, int second)
 		return (1.0);
 	else
 		return ((double)(val - first) / (second - first));
+}
+
+
+static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
+{
+	int i;
+
+	i = 0;
+	while (i++ <= one.d->x)
+	{
+		if (dot.height >= 0 && dot.color >= 0 &&
+			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+			* f->image.bits) = gradient(one.shade, two.shade,
+			persentage(dot.height, one.c->x, two.c->x));
+		dot.height += two.c->x >= one.c->x ? 1 : -1;
+		if (one.dec > 0)
+		{
+			one.dec += one.dots->y;
+			dot.color += two.c->y >= one.c->y ? 1 : -1;
+		}
+		else
+			one.dec += one.dots->x;
+		//if (dot.height >= 0 && dot.color >= 0 &&
+		//	dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+		//	*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+		//	* f->image.bits) = gradient(one.shade, two.shade,
+		//	persentage(dot.height, one.c->x, two.c->x));
+	}
 }
 
 static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
@@ -57,39 +90,11 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		}
 		else
 			one.dec += one.dots->x;
-		//if (dot.height >= 0 && dot.color >= 0 &&
-		//	dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-		//	*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-		//	* f->image.bits) = gradient(one.shade, two.shade,
-		//	persentage(dot.height, one.c->y, two.c->y));	
-	}
-}
-
-static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
-{
-	int i;
-
-	i = 0;
-	while (i++ <= one.d->x)
-	{
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
 			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->x, two.c->x));
-		dot.height += two.c->x >= one.c->x ? 1 : -1;
-		if (one.dec > 0)
-		{
-			one.dec += one.dots->y;
-			dot.color += two.c->y >= one.c->y ? 1 : -1;
-		}
-		else
-			one.dec += one.dots->x;
-		if (dot.height >= 0 && dot.color >= 0 &&
-			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->x, two.c->x));
+			persentage(dot.height, one.c->y, two.c->y));	
 	}
 }
 
@@ -97,8 +102,8 @@ void			draw(t_fdf *f, t_algo first, t_algo second)
 {
 	t_line		coor;
 
-	first.d->x = ABS(second.c->x - first.c->x);
-	first.d->y = ABS(second.c->y - first.c->y);
+	first.d->x = AB(second.c->x - first.c->x);
+	first.d->y = AB(second.c->y - first.c->y);
 	coor.height = first.c->x + (second.c->x >= first.c->x ? 1 : -1);
 	coor.color = first.c->y;
 	if (first.d->y <= first.d->x)
