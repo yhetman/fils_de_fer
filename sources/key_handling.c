@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:18:47 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/18 03:43:48 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/13 19:26:29 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	refreshing(t_fdf *fdf)
 {
-	if (fdf->y < fdf->x)
-		fdf->z = WIN_WIDTH / fdf->x;
-	else
-		fdf->z = WIN_HEIGHT / fdf->y;
-	fdf->h = 0.1;
-	ft_bzero(&(fdf->rot), sizeof(t_rot));
 	fdf->x = 0;
 	fdf->y = 0;
+	if (fdf->cor->y >= fdf->cor->x)
+		fdf->z = WIN_HEIGHT / fdf->cor->y / 2;
+	else
+		fdf->z = WIN_WIDTH / fdf->cor->x / 2;
+	fdf->h = 0.01;
+	ft_bzero(&(fdf->rot), sizeof(t_rot));
 }
 
 void	rotation(int c, t_fdf *fdf)
@@ -43,13 +43,13 @@ void	rotation(int c, t_fdf *fdf)
 void	movement(int c, t_fdf *fdf)
 {
 	if (c == 126)
-		fdf->y -= 10;
+		fdf->y -= 20;
 	else if (c == 123)
-		fdf->x -= 10;
+		fdf->x -= 20;
 	else if (c == 124)
-		fdf->x += 10;
+		fdf->x += 20;
 	else if (c == 125)
-		fdf->y += 10;
+		fdf->y += 20;
 }
 
 void	zoom(int c, t_fdf *fdf)

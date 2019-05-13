@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:37:58 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/07 10:26:05 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/13 19:39:35 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static t_algo	init_algo(int x, int y, int col)
+static t_algo	init_algo(int x, int y, int decimal)
 {
 	t_algo	a;
 
@@ -24,7 +24,7 @@ static t_algo	init_algo(int x, int y, int col)
 	ft_bzero(a.dots, sizeof(t_coord));
 	a.c->x = x;
 	a.c->y = y;
-	a.shade = col;
+	a.shade = decimal;
 	return (a);
 }
 
@@ -43,21 +43,21 @@ void			using_algo(t_fdf *f, int x, int y, t_color **p)
 	if (!(i = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();
 	i->y = -1;
-	while ((i->x = -1) && (++i->y + 1) < y)
+	while ((i->x = -1) && ++i->y + 1 < y)
 	{
-		while ((++i->x + 1)< x)
+		while (++i->x + 1 < x)
 		{
 			drawing(f, i->x, i->y, p);
-			draw(f, init_algo(f->x + p[i->y][i->x].r, f->y
-				+ p[i->y][i->x].g, p[i->y][i->x].dec),
-				init_algo(f->x + p[i->y + 1][i->x].r, f->y
-				+ p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
+			draw(f, init_algo(f->x + p[i->y][i->x].r,
+			f->y + p[i->y][i->x].g, p[i->y][i->x].dec),
+			init_algo(f->x + p[i->y + 1][i->x].r,
+			f->y + p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
 		}
-		draw(f, init_algo(f->x + p[i->y][i->x].r, f->y
-			+ p[i->y][i->x].g, p[i->y][i->x].dec),
-			init_algo(f->x + p[i->y + 1][i->x].r, f->y
-			+ p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
+		draw(f, init_algo(f->x + p[i->y][i->x].r,
+		f->y + p[i->y][i->x].g, p[i->y][i->x].dec),
+		init_algo(f->x + p[i->y + 1][i->x].r,
+		f->y + p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
 	}
-		while ((++i->x + 1) < x)
+		while (++i->x + 1 < x)
 			drawing(f, i->x, i->y, p);	
 }

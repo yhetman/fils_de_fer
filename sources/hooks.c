@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/05 18:14:43 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/13 19:34:44 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			define_hook(int c, t_fdf *fdf)
 	if (c == 53)
 		exit_hook(53, fdf);
 	if (c == 13 ||c == 0 || c == 1
-		|| c == 2 || c == 43 || c == 47)
+		|| c == 2 || c == 23 || c == 47)
 		rotation(c, fdf);
 	else if (c == 126|| c == 123
 		|| c == 124 || c == 125)
@@ -76,7 +76,7 @@ int			define_hook(int c, t_fdf *fdf)
 	else if (c == 6 || c == 7)
 		zoom(c, fdf);
 	else if (c == 51)
-		refreshing( fdf);
+		refreshing(fdf);
 	mlx_clear_window(fdf->mlx, fdf->win);
 	ft_bzero((void *)fdf->image.ptr, WIN_WIDTH * WIN_HEIGHT * 4);
 	creating(fdf);

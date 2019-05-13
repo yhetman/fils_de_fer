@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/06 21:05:19 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/13 19:26:15 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	init_points(t_fdf *fdf)
 		fdf->points[c->y] = (t_color *)malloc(sizeof(t_color) * fdf->cor->x);
 		while (++c->x < fdf->cor->x)
 		{
-			fdf->points[c->y][c->x] = 
-				counting_rotation(fdf->rot, fdf->z * (c->x - fdf->cor->x / 2),
+			fdf->points[c->y][c->x] = counting_rotation(fdf->rot,
+				fdf->z * (c->x - fdf->cor->x / 2),
 				fdf->z * (c->y - fdf->cor->y / 2),
 				fdf->z * fdf->h * fdf->line[c->y][c->x].height);
 			fdf->points[c->y][c->x].r += WIN_WIDTH / 2;
@@ -58,15 +58,13 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	fdf->cor->y = c->y;
 	fdf->h = 0.1;
 	fdf->info = 1;
-	fdf->rot.x = 0;
-	fdf->rot.y = 0;
-	fdf->rot.z = 0;
+	ft_bzero(&(fdf->rot), sizeof(t_rot));
 	fdf->x = 0;
 	fdf->y = 0;
 	if (c->y >= c->x)
-		fdf->z = WIN_HEIGHT / fdf->cor->y;
+		fdf->z = WIN_HEIGHT / fdf->cor->y / 2;
 	else
-		fdf->z = WIN_WIDTH / fdf->cor->x;
+		fdf->z = WIN_WIDTH / fdf->cor->x / 2;
 	init_points(fdf);
 	return (fdf);
 }
