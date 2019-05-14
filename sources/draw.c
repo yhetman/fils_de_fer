@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/13 20:15:04 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/14 18:03:17 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		}
 		else
 			one.dec += one.dots->x;
-		//if (dot.height >= 0 && dot.color >= 0 &&
-		//	dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-		//	*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-		//	* f->image.bits) = gradient(one.shade, two.shade,
-		//	persentage(dot.height, one.c->x, two.c->x));
+		if (dot.height >= 0 && dot.color >= 0 &&
+			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+			* f->image.bits) = gradient(one.shade, two.shade,
+			persentage(dot.height, one.c->x, two.c->x));
 	}
 }
 
