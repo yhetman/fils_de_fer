@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/13 19:26:15 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 16:18:38 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ static void	init_points(t_fdf *fdf)
 		fdf->points[c->y] = (t_color *)malloc(sizeof(t_color) * fdf->cor->x);
 		while (++c->x < fdf->cor->x)
 		{
-			fdf->points[c->y][c->x] = counting_rotation(fdf->rot,
+			fdf->points[c->y][c->x] = counting_rotation(fdf,
 				fdf->z * (c->x - fdf->cor->x / 2),
 				fdf->z * (c->y - fdf->cor->y / 2),
-				fdf->z * fdf->h * fdf->line[c->y][c->x].height);
+				fdf->z * fdf->h * fdf->line[c->y][c->x].height / 2);
 			fdf->points[c->y][c->x].r += WIN_WIDTH / 2;
 			fdf->points[c->y][c->x].g += WIN_HEIGHT / 2;
 			if (fdf->line[c->y][c->x].color)
 				fdf->points[c->y][c->x].dec = fdf->line[c->y][c->x].color;
 			else if (fdf->line[c->y][c->x].height != 0)
-				fdf->points[c->y][c->x].dec = 0xFF0000;
+				fdf->points[c->y][c->x].dec = 0xFFFFFF;
 			else
-				fdf->points[c->y][c->x].dec = 0xFF00;
+				fdf->points[c->y][c->x].dec = 0xFFFF;
 		}
 	}
 }

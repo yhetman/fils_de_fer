@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/13 19:17:33 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 14:19:26 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct		s_coord
 
 typedef struct		s_rotation
 {
-	double			x;
-	double			y;
-	double			z;
+	float			x;
+	float			y;
+	float			z;
 }					t_rot;
 
 typedef struct		s_line
@@ -62,10 +62,10 @@ typedef struct		s_fdf
 	//t_palette		*palette;
 	t_rot			rot;
 	char			*name;
-	double			x;
-	double			y;
-	double			z;
-	double			h;
+	float			x;
+	float			y;
+	float			z;
+	float			h;
 	int				info;
 }					t_fdf;
 

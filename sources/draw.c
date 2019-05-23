@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/15 19:23:49 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 14:51:23 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define AB(c)	abs(c)
 
-static double	gradient(int first, int second, double percent)
+static float	gradient(int first, int second, float percent)
 {
 	int		r;
 	int		g;
@@ -24,21 +24,21 @@ static double	gradient(int first, int second, double percent)
 		return (first);
 	r = (first >> 16) + ((second >> 16)
 		- (first >> 16)) * percent;
-	g = (first >> 8 & 0x80) + ((second >> 8 & 0x80)
-		- (first >> 8 & 0x80)) * percent;
-	b = (first & 0x80) + ((second & 0x80)
-		- (first & 0x80)) * percent;
-	return (ft_rgb_to_int(r, g, b));
+	g = (first >> 8 & 0xFFFF) + ((second >> 8 & 0xFFFF)
+		- (first >> 8 & 0xFFFF)) * percent;
+	b = (first & 0xFF) + ((second & 0xFF)
+		- (first & 0xFF)) * percent;
+	return (r << 16 | g << 8 | b);
 }
 
-static double	persentage(int val, int first, int second)
+static float	persentage(int val, int first, int second)
 {
 	if (val == first)
 		return (0.0);
 	else if (val == second)
 		return (1.0);
 	else
-		return ((double)(val - first) / (second - first));
+		return ((float)(val - first) / (second - first));
 }
 
 
@@ -62,11 +62,11 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		}
 		else
 			one.dec += one.dots->x;
-		if (dot.height >= 0 && dot.color >= 0 &&
-			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->x, two.c->x));
+		//f (dot.height >= 0 && dot.color >= 0 &&
+		//	dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+		//	*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
+		//	* f->image.bits) = gradient(one.shade, two.shade,
+		//	persentage(dot.height, one.c->x, two.c->x));
 	}
 }
 

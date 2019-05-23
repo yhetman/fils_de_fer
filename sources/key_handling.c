@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:18:47 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/14 18:46:03 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 16:12:17 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	refreshing(t_fdf *fdf)
 		fdf->z = WIN_HEIGHT / fdf->cor->y / 2;
 	else
 		fdf->z = WIN_WIDTH / fdf->cor->x / 2;
-	fdf->h = 0.01;
+	fdf->h = 0.1;
 	ft_bzero(&(fdf->rot), sizeof(t_rot));
 }
 
@@ -28,42 +28,42 @@ void	rotation(int c, t_fdf *fdf)
 {
 	if (c == 13)
 		fdf->rot.x += 0.05 * M_PI;
-	else if (c == 1)
+	if (c == 1)
 		fdf->rot.x -= 0.05 * M_PI;
-	else if (c == 0)
+	if (c == 0)
 		fdf->rot.y -= 0.05 * M_PI;
-	else if (c == 2)
+	if (c == 2)
 		fdf->rot.y += 0.05 * M_PI;
-	else if (c == 43)
+	if (c == 43)
 		fdf->rot.z -= 0.05 * M_PI;
-	else if (c == 47)
+	if (c == 47)
 		fdf->rot.z += 0.05 * M_PI;
 }
 
 void	movement(int c, t_fdf *fdf)
 {
 	if (c == 126)
-		fdf->y -= 20;
-	else if (c == 123)
-		fdf->x -= 20;
-	else if (c == 124)
-		fdf->x += 20;
-	else if (c == 125)
-		fdf->y += 20;
+		fdf->y -= 10;
+	if (c == 123)
+		fdf->x -= 10;
+	if (c == 124)
+		fdf->x += 10;
+	if (c == 125)
+		fdf->y += 10;
 }
 
 void	zoom(int c, t_fdf *fdf)
 {
 	if (c == 7)
-		fdf->z += 0.1;
-	else if (c == 6)
-		fdf->z -= 0.1;
+		fdf->z += 1;
+	if (c == 6)
+		fdf->z -= 1;
 }
 
 void	change_height(int c, t_fdf *fdf)
 {
-	if (c == 69 )
-		fdf->h += 0.01;
-	else if (c == 78)
-		fdf->h -= 0.01;
+	if (c == 69)
+		fdf->h += 0.1;
+	if (c == 78)
+		fdf->h -= 0.1;
 }

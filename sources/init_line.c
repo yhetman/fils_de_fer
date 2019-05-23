@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/07 16:21:37 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 16:27:50 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_line			**init_line(t_coord *c, char *map, char *row)
 		return (0);
 	grid[c->y] = 0;
 	fd = open(map, O_RDONLY);
-	
 	while (get_next_line(fd, &row))
 	{
 		grid[i++] = ft_strsplit(row, ' ');
