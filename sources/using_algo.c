@@ -6,29 +6,23 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:37:58 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 19:38:55 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 20:30:05 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static inline t_algo	init_algo(float x, float y, int decimal)
+static inline t_algo	init_algo(double x, double y, int decimal)
 {
 	t_algo	a;
 
-	a.dots = (t_coord*)malloc(sizeof(t_coord));
-	a.c = (t_coord*)malloc(sizeof(t_coord));
-	a.d = (t_coord*)malloc(sizeof(t_coord));
-	ft_bzero(a.c, sizeof(t_coord));
-	ft_bzero(a.d, sizeof(t_coord));
-	ft_bzero(a.dots, sizeof(t_coord));
-	a.c->x = x;
-	a.c->y = y;
-	a.shade = decimal;
+	a.x = x;
+	a.y = y;
+	a.color = decimal;
 	return (a);
 }
 
-static inline void		drawing(t_fdf *f, int i, int j, t_color **p)
+static void		drawing(t_fdf *f, int i, int j, t_color **p)
 {
 	draw(f, init_algo(f->x + p[j][i].r, f->y
 		+ p[j][i].g, p[j][i].dec),
@@ -39,7 +33,6 @@ static inline void		drawing(t_fdf *f, int i, int j, t_color **p)
 void			using_algo(t_fdf *f, t_color **p)
 {
 	t_coord	*i;
-	//t_algo	a;
 
 	if (!(i = (t_coord*)malloc(sizeof(t_coord))))
 		mal_error();

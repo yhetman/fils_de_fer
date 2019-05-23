@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 19:12:23 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 20:23:30 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define AB(c)	abs(c)
 
 
-static float	gradient(int first, int second, float percent)
+static inline double	gradient(int first, int second, double percent)
 {
 	int		r;
 	int		g;
@@ -32,14 +32,14 @@ static float	gradient(int first, int second, float percent)
 	return (r << 16 | g << 8 | b);
 }
 
-static float	persentage(int val, int first, int second)
+static inline double	persentage(int val, int first, int second)
 {
 	if (val == first)
 		return (0.0);
 	else if (val == second)
 		return (1.0);
 	else
-		return ((float)(val - first) / (second - first));
+		return ((double)(val - first) / (second - first));
 }
 
 static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
@@ -47,22 +47,21 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	int i;
 
 	i = 0;
-	while (i <= one.d->x)
+	while (i++ <= one.dx)
 	{
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->x, two.c->x));
-		dot.height += two.c->x >= one.c->x ? 1 : -1;
+			* f->image.bits) = gradient(one.color, two.color,
+			persentage(dot.height, one.x, two.x));
+		dot.height += two.x >= one.x ? 1 : -1;
 		if (one.dec > 0)
 		{
-			one.dec += one.dots->y;
-			dot.color += two.c->y >= one.c->y ? 1 : -1;
+			one.dec += one.second;
+			dot.color += two.y >= one.y ? 1 : -1;
 		}
 		else
-			one.dec += one.dots->x;
-		i++;
+			one.dec += one.first;
 	}
 }
 
@@ -71,27 +70,26 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	int i;
 
 	i = 0;
-	while (i <= one.d->y)
+	while (i++ <= one.dy)
 	{
-		if (dot.height >= 0 && dot.color >= 0 &&
-			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->y, two.c->y));
-		dot.color += two.c->y >= one.c->y ? 1 : -1;
+		if (dot.height >= 0 && dot.color >= 0
+			&& dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height *
+				f->image.bits) = gradient(one.color, two.color,
+					persentage(dot.color, one.y, two.y));
+		dot.color += two.y >= one.y ? 1 : -1;
 		if (one.dec > 0)
 		{
-			one.dec += two.dots->y;
-			dot.height += two.c->x >= one.c->x ? 1 : -1;
+			one.dec += one.second;
+			dot.height += two.x >= one.x ? 1 : -1;
 		}
 		else
-			one.dec += one.dots->x;
+			one.dec += one.first;
 		if (dot.height >= 0 && dot.color >= 0 &&
-			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->y, two.c->y));
-		i++;
+				dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
+			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height *
+				f->image.bits) = gradient(one.color, two.color,
+					persentage(dot.color, one.y, two.y));
 	}
 }
 
@@ -99,22 +97,22 @@ void			draw(t_fdf *f, t_algo first, t_algo second)
 {
 	t_line		coor;
 
-	first.d->x = AB(second.c->x - first.c->x);
-	first.d->y = AB(second.c->y - first.c->y);
-	coor.height = first.c->x + (second.c->x >= first.c->x ? 1 : -1);
-	coor.color = first.c->y;
-	if (first.d->y <= first.d->x)
+	first.dx = AB(second.x - first.x);
+	first.dy = AB(second.y - first.y);
+	coor.height = first.x + (second.x >= first.x ? 1 : -1);
+	coor.color = first.y;
+	if (first.dy <= first.dx)
 	{
-		first.dec = 2 * first.d->y - first.d->x;
-		first.dots->x = 2 * first.d->y;
-		first.dots->y = 2 * (first.d->y - first.d->x);
+		first.dec = 2 * first.dy - first.dx;
+		first.first = 2 * first.dy;
+		first.second = 2 * (first.dy - first.dx);
 		draw_absis(f, first, second, coor);
 	}
 	else
 	{
-		first.dec = 2 * first.d->x - first.d->y;
-		first.dots->x = 2 * first.d->x;
-		first.dots->y = 2 * (first.d->x - first.d->y);
+		first.dec = 2 * first.dx - first.dy;
+		first.first = 2 * first.dx;
+		first.second = 2 * (first.dx - first.dy);
 		draw_ordinat(f, first, second, coor);
 	}
 }

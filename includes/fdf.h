@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 16:34:17 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 20:27:36 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	init_image(void *mlx, t_image *image);
 
 void	draw(t_fdf *f, t_algo first, t_algo second);
 
-//inline t_algo	init_algo(int x, int y, int decimal);
 void	using_algo(t_fdf *f, t_color **p);
 
 void	rotation(int keycode, t_fdf *fdf);
@@ -40,7 +39,6 @@ void	change_height(int keycode, t_fdf *fdf);
 void	zoom(int keycode, t_fdf *fdf);
 void	refreshing(t_fdf *fdf);
 
-int		exit_hook(int keycode, void *ptr);
 int		define_hook(int keycode, t_fdf *fdf);
 
 int		is_valid(t_fdf **fdf, char *str);
@@ -49,6 +47,6 @@ t_line	**init_line(t_coord *c, char *map, char *line);
 
 t_fdf	*init_fdf(t_line **l, t_coord *c);
 
-t_color	counting_rotation(t_fdf *f, float x,
-		float y, float z);
+t_color	counting_rotation(t_fdf *f, double x,
+		double y, double z);
 #endif

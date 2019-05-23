@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 14:19:26 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 20:18:48 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct		s_coord
 
 typedef struct		s_rotation
 {
-	float			x;
-	float			y;
-	float			z;
+	double			x;
+	double			y;
+	double			z;
 }					t_rot;
 
 typedef struct		s_line
@@ -44,11 +44,14 @@ typedef struct		s_image
 
 typedef struct		s_algo
 {
-	t_coord			*dots; //x = dot1, y = dot2;
-	t_coord			*c;
-	t_coord			*d;
-	int				shade;
+	int				x;
+	int				y;
+	int				color;
+	int				dx;
+	int				dy;
 	int				dec;
+	int				first;
+	int				second;
 }					t_algo;
 
 typedef struct		s_fdf
@@ -62,10 +65,10 @@ typedef struct		s_fdf
 	//t_palette		*palette;
 	t_rot			rot;
 	char			*name;
-	float			x;
-	float			y;
-	float			z;
-	float			h;
+	double			x;
+	double			y;
+	double			z;
+	double			h;
 	int				info;
 }					t_fdf;
 

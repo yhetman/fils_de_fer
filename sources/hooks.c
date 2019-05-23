@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 18:40:18 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 20:27:41 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	reset_points(t_fdf *fdf)
 	}
 }
 
-static void	creating(t_fdf *fdf)
+static inline void	creating(t_fdf *fdf)
 {
 	if (fdf->z < 0)
 		fdf->z = 0;
@@ -51,7 +51,7 @@ static void	creating(t_fdf *fdf)
 		display_menu(fdf, fdf->name);
 }
 
-int			exit_hook(int c, void *ptr)
+static inline int			exit_hook(int c, void *ptr)
 {
 	t_fdf	*f;
 
@@ -63,7 +63,6 @@ int			exit_hook(int c, void *ptr)
 
 int			define_hook(int c, t_fdf *fdf)
 {
-	creating(fdf);
 	if (c == 53)
 		exit_hook(53, fdf);
 	if (c == 13 ||c == 0 || c == 1

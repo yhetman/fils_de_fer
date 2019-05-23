@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 18:37:21 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 15:26:42 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 20:17:47 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_color		counting_rotation(t_fdf *f, float x, float y, float z)
+t_color		counting_rotation(t_fdf *f, double x, double y, double z)
 {	
 	t_color	point;
 
