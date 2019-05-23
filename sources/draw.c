@@ -6,13 +6,14 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 14:51:23 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 19:12:23 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 #define AB(c)	abs(c)
+
 
 static float	gradient(int first, int second, float percent)
 {
@@ -41,13 +42,12 @@ static float	persentage(int val, int first, int second)
 		return ((float)(val - first) / (second - first));
 }
 
-
 static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 {
 	int i;
 
 	i = 0;
-	while (i++ <= one.d->x)
+	while (i <= one.d->x)
 	{
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
@@ -62,11 +62,7 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 		}
 		else
 			one.dec += one.dots->x;
-		//f (dot.height >= 0 && dot.color >= 0 &&
-		//	dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
-		//	*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
-		//	* f->image.bits) = gradient(one.shade, two.shade,
-		//	persentage(dot.height, one.c->x, two.c->x));
+		i++;
 	}
 }
 
@@ -75,7 +71,7 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	int i;
 
 	i = 0;
-	while (i++ <= one.d->y)
+	while (i <= one.d->y)
 	{
 		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
@@ -94,7 +90,8 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
 			* f->image.bits) = gradient(one.shade, two.shade,
-			persentage(dot.height, one.c->y, two.c->y));	
+			persentage(dot.height, one.c->y, two.c->y));
+		i++;
 	}
 }
 

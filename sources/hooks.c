@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 16:34:07 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/23 18:40:18 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			exit_hook(int c, void *ptr)
 
 int			define_hook(int c, t_fdf *fdf)
 {
-	//creating(fdf);
+	creating(fdf);
 	if (c == 53)
 		exit_hook(53, fdf);
 	if (c == 13 ||c == 0 || c == 1
