@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 20:27:41 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 18:06:58 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ static inline int			exit_hook(int c, void *ptr)
 
 	f = (t_fdf*)ptr;
 	if (c == 53)
+	{
+		system("leaks fdf");
 		exit(EXIT_SUCCESS);
+	}
 	return(0);
 }
 
