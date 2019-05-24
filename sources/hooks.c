@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 18:06:58 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 21:30:39 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	reset_points(t_fdf *fdf)
 {
 	t_coord	*c;
 
-	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
-		mal_error();
+	c = (t_coord*)malloc(sizeof(t_coord));
 	c->y = -1;
 	while ((c->x = -1) && ++c->y < fdf->cor->y)
 	{
@@ -38,6 +37,7 @@ static void	reset_points(t_fdf *fdf)
 				fdf->points[c->y][c->x].dec = 0xFFFF;
 		}
 	}
+	ft_memdel((void**)&c);
 }
 
 static inline void	creating(t_fdf *fdf)
@@ -47,27 +47,25 @@ static inline void	creating(t_fdf *fdf)
 	reset_points(fdf);
 	using_algo(fdf, fdf->points);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.image, 0, 0);
-	if (fdf->info)
-		display_menu(fdf, fdf->name);
+	//ft_memdel((void**)fdf->points);
+	//if (fdf->info)
+	display_menu(fdf, fdf->name);
 }
 
-static inline int			exit_hook(int c, void *ptr)
+static inline int			exit_hook(void)
 {
-	t_fdf	*f;
-
-	f = (t_fdf*)ptr;
-	if (c == 53)
-	{
-		system("leaks fdf");
-		exit(EXIT_SUCCESS);
-	}
+	system("leaks -q fdf");
+	exit(EXIT_SUCCESS);
 	return(0);
 }
 
 int			define_hook(int c, t_fdf *fdf)
 {
 	if (c == 53)
-		exit_hook(53, fdf);
+	{
+		ft_free_fdf(fdf);
+		exit_hook();
+	}
 	if (c == 13 ||c == 0 || c == 1
 		|| c == 2 || c == 43 || c == 47)
 		rotation(c, fdf);

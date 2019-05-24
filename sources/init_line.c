@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 18:39:14 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 21:28:06 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 {
 	t_coord *in;
 
-	if (!(in = (t_coord *)malloc(sizeof(t_coord))))
-		mal_error();
+	in = (t_coord *)malloc(sizeof(t_coord));
 	in->y = -1;
 	while (++in->y < c->y)
 	{
@@ -48,6 +47,7 @@ static t_line	**fill_the_line(char ***str, t_coord *c, t_line **line)
 			coloring(str[in->y][in->x], &line[in->y][in->x].color);
 		}
 	}
+	ft_memdel((void**)&in);
 	return (line);
 }
 
@@ -69,9 +69,9 @@ t_line			**init_line(t_coord *c, char *map, char *row)
 		ft_strdel(&row);
 	}
 	close(fd);
-	if (!(line = (t_line **)malloc(sizeof(t_line *) * c->y)))
-		return (0);
+	line = (t_line **)malloc((sizeof(t_line *) * c->y) + 1);
+	//	return (0);
 	fill_the_line(grid, c, line);
 	ft_free_grid(grid);
-	return (line);
+	return(line);
 }

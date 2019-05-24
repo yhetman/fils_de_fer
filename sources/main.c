@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 18:52:25 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 21:29:51 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ static inline void	mlx_manager(t_fdf *fdf, char *name)
 	display_menu(fdf, fdf->name);
 }
 
+void		ft_free_fdf(t_fdf	*fdf)
+{
+	t_line	**line;
+
+	line = fdf->line;
+	if (fdf)
+	{}
+}
+
 int			main(int argc, char **argv)
 {
 	t_fdf	*fdf;
@@ -56,7 +65,5 @@ int			main(int argc, char **argv)
 	mlx_manager(fdf, argv[1]);
 	mlx_hook(fdf->win, 2, 0, define_hook, fdf);
 	mlx_loop(fdf->mlx);
-	ft_strdel(&fdf->name);
-	ft_memdel((void*)fdf);
-	return (0);
+	return(0);
 }

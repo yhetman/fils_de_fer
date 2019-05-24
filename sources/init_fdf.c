@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 20:13:57 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 20:51:18 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	init_points(t_fdf *fdf)
 {
 	t_coord	*c;
 
-	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
-		mal_error();
+	c = (t_coord*)malloc(sizeof(t_coord));
 	c->y = -1; 
 	fdf->points = (t_color **)malloc(sizeof(t_color *) * fdf->cor->y);
 	while ((c->x = -1) && ++c->y < fdf->cor->y)
@@ -39,14 +38,14 @@ static void	init_points(t_fdf *fdf)
 				fdf->points[c->y][c->x].dec = 0xFFFF;
 		}
 	}
+	ft_memdel((void**)&c);
 }
 
 t_fdf		*init_fdf(t_line **line, t_coord *c)
 {
 	t_fdf	*fdf;
 
-	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
-		mal_error();
+	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	ft_bzero(fdf, sizeof(t_fdf));
 	fdf->cor = (t_coord *)malloc(sizeof(t_coord));
 	ft_bzero(fdf->cor, sizeof(t_coord));
@@ -57,7 +56,6 @@ t_fdf		*init_fdf(t_line **line, t_coord *c)
 	fdf->cor->x = c->x;
 	fdf->cor->y = c->y;
 	fdf->h = 0.1;
-	fdf->info = 1;
 	ft_bzero(&(fdf->rot), sizeof(t_rot));
 	fdf->x = 0;
 	fdf->y = 0;

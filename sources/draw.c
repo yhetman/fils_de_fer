@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 18:22:29 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 20:50:19 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	i = 0;
 	while (i++ <= one.dx)
 	{
-		if (dot.height != 0 && dot.color != 0 &&
+		if (dot.height >= 0 && dot.color >= 0 &&
 			dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height
 			* f->image.bits) = gradient(one.color, two.color,
@@ -72,7 +72,7 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	i = 0;
 	while (i++ <= one.dy)
 	{
-		if (dot.height != 0 && dot.color != 0
+		if (dot.height >= 0 && dot.color >= 0
 			&& dot.height < WIN_WIDTH && dot.color < WIN_HEIGHT)
 			*(int *)(f->image.ptr + dot.color * f->image.size + dot.height *
 				f->image.bits) = gradient(one.color, two.color,
@@ -115,4 +115,5 @@ void			draw(t_fdf *f, t_algo first, t_algo second)
 		first.second = 2 * (first.dx - first.dy);
 		draw_ordinat(f, first, second, coor);
 	}
+	//ft_memdel((void**)&coor);
 }

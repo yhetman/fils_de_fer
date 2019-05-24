@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 20:18:48 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 21:29:52 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct		s_fdf
 	double			y;
 	double			z;
 	double			h;
-	int				info;
 }					t_fdf;
 
 /*

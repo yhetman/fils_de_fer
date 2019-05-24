@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 20:27:36 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/24 21:09:22 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	mal_error(void);
 int		arg_error(void);
 int		file_error(void);
 
+void	ft_free_fdf(t_fdf	*fdf);
 void	display_menu(t_fdf *fdf, char *name);
 void	init_image(void *mlx, t_image *image);
 
