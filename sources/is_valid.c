@@ -26,6 +26,7 @@ static int	save_ordinat(char *map)
 		ordinat++;
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	if (res < 0)
 		return (-1);
 	close(fd);
@@ -55,6 +56,7 @@ static int	save_absis(char *map)
 		else if (absis != tmp || !absis)
 			return (-1);
 	}
+    ft_strdel(&line);
 	close(fd);
 	return (absis);
 }
@@ -63,6 +65,7 @@ int			is_valid(t_fdf **fdf, char *map)
 {
 	t_coord	*c;
 	char	*line;
+	t_line  **temp;
 
 	line = NULL;
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
@@ -72,6 +75,9 @@ int			is_valid(t_fdf **fdf, char *map)
 		return (file_error());
 	if ((c->x = save_absis(map)) <= 0)
 		return (map_error());
-	*fdf = init_fdf(init_line(c, map, line), c);
+	temp = init_line(c, map, line);
+	*fdf = init_fdf(temp, c);
+	free(temp);
+	ft_memdel((void**)&c);
 	return (0);
 }

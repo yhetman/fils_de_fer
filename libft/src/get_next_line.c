@@ -108,8 +108,10 @@ int			get_next_line(const int fd, char **line)
 	gnl.ret = -1;
 	if (fd < 0 || BUFF_SIZE < 1 || !line)
 		return (-1);
-	if ((backslash_in_rest(fd, line, &gnl.mew, &gnl.buffer)) == 1)
-		return (1);
+	if ((backslash_in_rest(fd, line, &gnl.mew, &gnl.buffer)) == 1) {
+	    free(gnl.buffer);
+        return (1);
+    }
 	while ((gnl.length = (int)read(fd, gnl.buffer, BUFF_SIZE)) > 0)
 	{
 		gnl.ret = backslash_in_buffer(gnl.buffer, gnl.length, &gnl.mew, line);

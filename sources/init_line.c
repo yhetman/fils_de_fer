@@ -67,6 +67,7 @@ t_line			**init_line(t_coord *c, char *map, char *row)
 		grid[i++] = ft_strsplit(row, ' ');
 		ft_strdel(&row);
 	}
+    ft_strdel(&row);
 	close(fd);
 	line = (t_line **)malloc(sizeof(t_line *) * c->y);
 	//	return (0);

@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 21:38:14 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 21:43:01 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void		ft_free_fdf(t_fdf	*fdf)
 
 	i = 0;
 	line = fdf->line;
+	fdf->line = NULL;
 	if (fdf)
 	{
 		free(fdf->name);

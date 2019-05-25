@@ -55,7 +55,7 @@ static inline void	creating(t_fdf *fdf)
 int			exit_hook(t_fdf *fdf)
 {
 	ft_free_fdf(fdf);
-	system("leaks -q fdf");
+	system("leaks fdf");
 	exit(EXIT_SUCCESS);
 	return(0);
 }
