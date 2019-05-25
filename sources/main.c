@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/26 00:02:24 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/26 00:11:08 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void				display_menu(t_fdf *fdf, char *name)
 			"TO ZOOM USE: 'Z' and 'X' ");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 150, 0x87CEEB,
 			"TO CHANGE HEIGHT USE: '+' and '-' ");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 180, 0x87CEEB, "TO MOVE USE ARROWS");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 210, 0x87CEEB, "TO EXIT PRESS 'ESC'");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 180, 0x87CEEB,
+			"TO MOVE USE ARROWS");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 210, 0x87CEEB,
+			"TO EXIT PRESS 'ESC'");
 	mlx_string_put(fdf->mlx, fdf->win, 10, WIN_HEIGHT - 25, 0xB0E0E6,
 			"AUTHOR: Yuliia HETMAN");
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.ptr, 0, 0);
