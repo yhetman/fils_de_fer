@@ -47,20 +47,16 @@ static inline void	mlx_manager(t_fdf *fdf, char *name)
 
 void		ft_free_fdf(t_fdf	*fdf)
 {
-	t_line	**line;
 	int		i;
 
-	i = 0;
-	line = fdf->line;
-	fdf->line = NULL;
 	if (fdf)
 	{
 		free(fdf->name);
 		fdf->name = NULL;
-		while(line[i])
-			if(line[i++])
-				free(line[i - 1]);
-		line = NULL;
+        i = -1;
+		while(fdf->line[++i])
+		    free(fdf->line[i]);
+		free(fdf->line);
 		ft_memdel((void**)&fdf->cor);
 		ft_memdel((void**)fdf->points);
 	}

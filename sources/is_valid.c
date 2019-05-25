@@ -61,6 +61,15 @@ static int	save_absis(char *map)
 	return (absis);
 }
 
+void        free_line(t_line **line)
+{
+    int     i;
+
+    i = -1;
+    while(line[++i])
+        free(line[i]);
+}
+
 int			is_valid(t_fdf **fdf, char *map)
 {
 	t_coord	*c;
@@ -77,7 +86,6 @@ int			is_valid(t_fdf **fdf, char *map)
 		return (map_error());
 	temp = init_line(c, map, line);
 	*fdf = init_fdf(temp, c);
-	free(temp);
 	ft_memdel((void**)&c);
 	return (0);
 }
