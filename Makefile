@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/14 01:12:39 by yhetman           #+#    #+#              #
-#    Updated: 2019/05/25 18:24:05 by yhetman          ###   ########.fr        #
+#    Updated: 2019/05/25 23:10:44 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ endif
 
 FILES		=	main init_fdf init_line is_valid \
 				counting_rotation hooks error draw \
-				key_handling using_algo
+				key_handling free using_algo
 
 SRC			=	$(addprefix sources/, $(addsuffix .c, $(FILES)))
 OBJ			=	$(addprefix obj/, $(addsuffix .o, $(FILES)))

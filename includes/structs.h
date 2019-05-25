@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 23:06:06 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:35:29 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ typedef struct		s_coord
 	int				y;
 }					t_coord;
 
+typedef struct		s_line
+{
+	int				height;
+	int				color;
+}					t_line;
+
 typedef struct		s_rotation
 {
 	double			x;
 	double			y;
 	double			z;
 }					t_rot;
-
-typedef struct		s_line
-{
-	int				height;
-	int				color;
-}					t_line;
 
 typedef struct		s_image
 {

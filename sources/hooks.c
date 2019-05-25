@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 23:07:29 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:24:21 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static inline void	creating(t_fdf *fdf)
 	display_menu(fdf, fdf->name);
 }
 
-int					exit_hook(t_fdf *fdf)
+int					exit_hook(void)
 {
-	ft_free_fdf(fdf);
+	system("leaks fdf");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -60,7 +60,7 @@ int					exit_hook(t_fdf *fdf)
 int					define_hook(int c, t_fdf *fdf)
 {
 	if (c == 53)
-		exit_hook(fdf);
+		exit_hook();
 	if (c == 13 || c == 0 || c == 1
 		|| c == 2 || c == 43 || c == 47)
 		rotation(c, fdf);

@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:18:47 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 18:06:10 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/26 00:04:52 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ void	movement(int c, t_fdf *fdf)
 void	zoom(int c, t_fdf *fdf)
 {
 	if (c == 7)
-		fdf->z += 1;
+		fdf->z += 0.05;
 	if (c == 6)
-		fdf->z -= 1;
+		fdf->z -= 0.05;
 }
 
 void	change_height(int c, t_fdf *fdf)
 {
 	if (c == 69)
-		fdf->h += 0.1;
+		fdf->h += 0.05;
 	if (c == 78)
-		fdf->h -= 0.1;
+		fdf->h -= 0.05;
 }
