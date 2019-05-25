@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:37:58 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 20:50:21 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:04:47 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static inline void		drawing(t_fdf *f, int i, int j, t_color **p)
 		+ p[j][i + 1].g, p[j][i + 1].dec));
 }
 
-void			using_algo(t_fdf *f, t_color **p)
+void					using_algo(t_fdf *f, t_color **p)
 {
 	t_coord	*i;
 
@@ -51,7 +51,7 @@ void			using_algo(t_fdf *f, t_color **p)
 			init_algo(f->x + p[i->y + 1][i->x].r,
 			f->y + p[i->y + 1][i->x].g, p[i->y + 1][i->x].dec));
 	}
-		while (++i->x + 1 < f->cor->x)
-			drawing(f, i->x, i->y, p);
+	while (++i->x + 1 < f->cor->x)
+		drawing(f, i->x, i->y, p);
 	ft_memdel((void**)&i);
 }

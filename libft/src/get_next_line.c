@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:07:18 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 22:47:17 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:54:22 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,17 @@ static int	backslash_in_rest(int fd, char **line, t_fdl **mew, char **buffer)
 	*line = NULL;
 	multi_fd_gnl(mew, &mew2, fd);
 	*buffer = ft_strnew(BUFF_SIZE);
-	if ((*mew)->reste && ft_strchr((*mew)->reste, '\n')) {
-        n = (size_t) ft_strclen((*mew)->reste, '\n');
-        (*mew)->reste[n] = '\0';
-        *line = ft_strdup((*mew)->reste);
-        temp = (*mew)->reste;
-        (*mew)->reste = ft_strdup(&(*mew)->reste[n + 1]);
-        free(temp);
-        ft_strdel(buffer);
-        return (1);
-    }
+	if ((*mew)->reste && ft_strchr((*mew)->reste, '\n'))
+	{
+		n = (size_t)ft_strclen((*mew)->reste, '\n');
+		(*mew)->reste[n] = '\0';
+		*line = ft_strdup((*mew)->reste);
+		temp = (*mew)->reste;
+		(*mew)->reste = ft_strdup(&(*mew)->reste[n + 1]);
+		free(temp);
+		ft_strdel(buffer);
+		return (1);
+	}
 	return (0);
 }
 

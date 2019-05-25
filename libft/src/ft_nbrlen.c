@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhetman <yhetman@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:48:08 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/10 03:58:25 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:55:04 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-size_t  ft_nbrlen(int n)
+size_t	ft_nbrlen(int n)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    if (n < 0)
-    {
-        n = ABS(n);
-        ++i;
-    }
-    while (n /= 10)
-        ++i;
-    return (i);
+	i = 0;
+	if (n < 0)
+	{
+		n = ABS(n);
+		++i;
+	}
+	while (n /= 10)
+		++i;
+	return (i);
 }

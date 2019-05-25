@@ -6,14 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 02:39:28 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 20:50:19 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:03:45 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 #define AB(c)	abs(c)
-
 
 static inline double	gradient(int first, int second, double percent)
 {
@@ -42,7 +41,7 @@ static inline double	persentage(int val, int first, int second)
 		return ((double)(val - first) / (second - first));
 }
 
-static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
+static void				draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 {
 	int i;
 
@@ -65,7 +64,8 @@ static void		draw_absis(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	}
 }
 
-static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
+static void				draw_ordinat(t_fdf *f, t_algo one, t_algo two,
+						t_line dot)
 {
 	int i;
 
@@ -93,7 +93,7 @@ static void		draw_ordinat(t_fdf *f, t_algo one, t_algo two, t_line dot)
 	}
 }
 
-void			draw(t_fdf *f, t_algo first, t_algo second)
+void					draw(t_fdf *f, t_algo first, t_algo second)
 {
 	t_line		coor;
 
@@ -115,5 +115,4 @@ void			draw(t_fdf *f, t_algo first, t_algo second)
 		first.second = 2 * (first.dx - first.dy);
 		draw_ordinat(f, first, second, coor);
 	}
-	//ft_memdel((void**)&coor);
 }

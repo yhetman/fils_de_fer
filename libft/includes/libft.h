@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 17:39:33 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/02 17:20:58 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:55:38 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <string.h>
 # include <sys/types.h>
 # include <time.h>
-#include <math.h>
+# include <math.h>
 # include "ft_printf.h"
 
 # define RED		"\033[31m"

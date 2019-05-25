@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:16:09 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 21:31:17 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:07:29 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	reset_points(t_fdf *fdf)
+static void			reset_points(t_fdf *fdf)
 {
 	t_coord	*c;
 
@@ -47,27 +47,24 @@ static inline void	creating(t_fdf *fdf)
 	reset_points(fdf);
 	using_algo(fdf, fdf->points);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image.image, 0, 0);
-	//ft_memdel((void**)fdf->points);
-	//if (fdf->info)
 	display_menu(fdf, fdf->name);
 }
 
-int			exit_hook(t_fdf *fdf)
+int					exit_hook(t_fdf *fdf)
 {
 	ft_free_fdf(fdf);
-	system("leaks fdf");
 	exit(EXIT_SUCCESS);
-	return(0);
+	return (0);
 }
 
-int			define_hook(int c, t_fdf *fdf)
+int					define_hook(int c, t_fdf *fdf)
 {
 	if (c == 53)
 		exit_hook(fdf);
-	if (c == 13 ||c == 0 || c == 1
+	if (c == 13 || c == 0 || c == 1
 		|| c == 2 || c == 43 || c == 47)
 		rotation(c, fdf);
-	if (c == 126|| c == 123
+	if (c == 126 || c == 123
 		|| c == 124 || c == 125)
 		movement(c, fdf);
 	if (c == 69 || c == 78)

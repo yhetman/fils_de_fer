@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:11 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 18:14:12 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:56:47 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,10 @@ t_line			**init_line(t_coord *c, char *map, char *row)
 		grid[i++] = ft_strsplit(row, ' ');
 		ft_strdel(&row);
 	}
-    ft_strdel(&row);
+	ft_strdel(&row);
 	close(fd);
 	line = (t_line **)malloc(sizeof(t_line *) * c->y);
-	//	return (0);
 	fill_the_line(grid, c, line);
 	ft_free_grid(grid);
-	return(line);
+	return (line);
 }

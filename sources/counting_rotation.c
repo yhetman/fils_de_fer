@@ -6,14 +6,14 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 18:37:21 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/23 20:17:47 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:56:11 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 t_color		counting_rotation(t_fdf *f, double x, double y, double z)
-{	
+{
 	t_color	point;
 
 	point.r = x * (COS(f->rot.y) * COS(f->rot.z)) - y

@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 01:19:44 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 21:29:52 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:06:06 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-#include "fdf.h"
+# include "fdf.h"
 
 typedef struct		s_coord
 {
@@ -31,7 +31,7 @@ typedef struct		s_line
 {
 	int				height;
 	int				color;
-}			 		t_line;
+}					t_line;
 
 typedef struct		s_image
 {
@@ -62,7 +62,6 @@ typedef struct		s_fdf
 	t_line			**line;
 	t_color			**points;
 	t_coord			*cor;
-	//t_palette		*palette;
 	t_rot			rot;
 	char			*name;
 	double			x;
@@ -70,16 +69,5 @@ typedef struct		s_fdf
 	double			z;
 	double			h;
 }					t_fdf;
-
-/*
-typedef struct		s_palette
-{
-	t_color			*c_1;
-	t_color			*c_2;
-	t_color			*c_3;
-	t_color			*c_4;
-	t_color			*c_5;
-}					t_palette;
-*/
 
 #endif

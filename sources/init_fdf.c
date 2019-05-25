@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:24:50 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 20:51:18 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:59:44 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_points(t_fdf *fdf)
 	t_coord	*c;
 
 	c = (t_coord*)malloc(sizeof(t_coord));
-	c->y = -1; 
+	c->y = -1;
 	fdf->points = (t_color **)malloc(sizeof(t_color *) * fdf->cor->y);
 	while ((c->x = -1) && ++c->y < fdf->cor->y)
 	{

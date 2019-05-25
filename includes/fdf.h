@@ -6,26 +6,26 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 21:31:09 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:07:53 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include "../libft/includes/libft.h"
-#include "mlx.h"
-#include "structs.h"
+# include "../libft/includes/libft.h"
+# include "mlx.h"
+# include "structs.h"
 
-# define WIN_HEIGHT 1000
-# define WIN_WIDTH  1000
+# define WIN_HEIGHT	1000
+# define WIN_WIDTH	1000
 
 void	mlx_error(void);
 int		map_error(void);
 void	mal_error(void);
 int		arg_error(void);
 int		file_error(void);
-
+void	free_line(t_line **line);
 void	ft_free_fdf(t_fdf	*fdf);
 void	display_menu(t_fdf *fdf, char *name);
 void	init_image(void *mlx, t_image *image);

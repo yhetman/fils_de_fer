@@ -6,13 +6,13 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:34 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/25 21:43:01 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 23:04:08 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		init_image(void *mlx, t_image *image)
+void				init_image(void *mlx, t_image *image)
 {
 	image->image = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
 	image->ptr = mlx_get_data_addr(image->image, &(image->bits),
@@ -20,9 +20,10 @@ void		init_image(void *mlx, t_image *image)
 	image->bits /= 8;
 }
 
-void		display_menu(t_fdf *fdf, char *name)
+void				display_menu(t_fdf *fdf, char *name)
 {
-	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0x6495ED, "Fils_de_Fer Controls");
+	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0x6495ED,
+		"Fils_de_Fer Controls");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0x87CEEB, "MAP:");
 	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0x87CEEB, name);
 	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0x87CEEB,
@@ -45,7 +46,7 @@ static inline void	mlx_manager(t_fdf *fdf, char *name)
 	display_menu(fdf, fdf->name);
 }
 
-void		ft_free_fdf(t_fdf	*fdf)
+void				ft_free_fdf(t_fdf *fdf)
 {
 	int		i;
 
@@ -53,16 +54,16 @@ void		ft_free_fdf(t_fdf	*fdf)
 	{
 		free(fdf->name);
 		fdf->name = NULL;
-        i = -1;
-		while(fdf->line[++i])
-		    free(fdf->line[i]);
+		i = -1;
+		while (fdf->line[++i])
+			free(fdf->line[i]);
 		free(fdf->line);
 		ft_memdel((void**)&fdf->cor);
 		ft_memdel((void**)fdf->points);
 	}
 }
 
-int			main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
 	t_fdf	*fdf;
 
@@ -74,5 +75,5 @@ int			main(int argc, char **argv)
 	mlx_hook(fdf->win, 17, 0, exit_hook, fdf);
 	mlx_hook(fdf->win, 2, 0, define_hook, fdf);
 	mlx_loop(fdf->mlx);
-	return(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:28:10 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 20:50:23 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 22:59:21 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,25 @@ static int	save_absis(char *map)
 		else if (absis != tmp || !absis)
 			return (-1);
 	}
-    ft_strdel(&line);
+	ft_strdel(&line);
 	close(fd);
 	return (absis);
 }
 
-void        free_line(t_line **line)
+void		free_line(t_line **line)
 {
-    int     i;
+	int	i;
 
-    i = -1;
-    while(line[++i])
-        free(line[i]);
+	i = -1;
+	while (line[++i])
+		free(line[i]);
 }
 
 int			is_valid(t_fdf **fdf, char *map)
 {
-	t_coord	*c;
-	char	*line;
-	t_line  **temp;
+	t_coord		*c;
+	char		*line;
+	t_line		**temp;
 
 	line = NULL;
 	if (!(c = (t_coord*)malloc(sizeof(t_coord))))
