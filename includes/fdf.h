@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:31:52 by yhetman           #+#    #+#             */
-/*   Updated: 2019/05/24 21:09:22 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/05/25 21:31:09 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	zoom(int keycode, t_fdf *fdf);
 void	refreshing(t_fdf *fdf);
 
 int		define_hook(int keycode, t_fdf *fdf);
-
+int		exit_hook(t_fdf *fdf);
 int		is_valid(t_fdf **fdf, char *str);
 
 t_line	**init_line(t_coord *c, char *map, char *line);
