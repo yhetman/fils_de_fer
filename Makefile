@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/14 01:12:39 by yhetman           #+#    #+#              #
-#    Updated: 2019/05/25 23:10:44 by yhetman          ###   ########.fr        #
+#    Updated: 2019/06/04 19:06:40 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	fdf
 OS			=	$(shell uname)
 
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror #-g3 #-fsanitize=address
 HEADER		=	-I libft/includes -I ./includes
 
 ifeq ($(OS), Linux)
